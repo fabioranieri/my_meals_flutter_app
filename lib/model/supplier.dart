@@ -1,15 +1,21 @@
+import 'package:better_uuid/uuid.dart';
+
 class Supplier {
-  final String name;
-  final String address;
-  final String email;
-  final String website;
-  final String category;
+  Uuid id;
+  String name;
+  String address;
+  String email;
+  String website;
+  String category;
+  bool isChecked;
 
   Supplier(
+      this.id,
       this.name,
       this.address,
       this.email,
       this.website,
-      this.category
+      this.category,
+      this.isChecked,
       );
 }

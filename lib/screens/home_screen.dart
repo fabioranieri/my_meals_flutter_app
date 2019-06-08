@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_quote_flutter_app/screens/login_screen.dart';
 import 'package:easy_quote_flutter_app/model/supplier.dart';
 import 'package:easy_quote_flutter_app/widget/supplier_card_list_item.dart';
+import 'package:better_uuid/uuid.dart';
 
 class HomeScreen extends StatefulWidget {
   final List<Supplier> items;
@@ -16,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<Supplier> items;
+  List<Supplier> items;
   _HomeScreenState({Key key, @required this.items});
 
   @override
@@ -25,9 +26,17 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
-  void _addProduct(Supplier item) {
+  void _addSupplier(Supplier item) {
     setState(() {
       items.add(item);
+    });
+  }
+
+  void _setSupplierchecked(int position, bool isChecked) {
+    var suppliers = items;
+    suppliers[position].isChecked = isChecked == true ? false : true;
+    setState(() {
+      items = suppliers;
     });
   }
 
@@ -48,19 +57,20 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
       ),
-      //body: _buildList(items),
-      body: SupplierCardListItem(items),
+      body: SupplierCardListItem(items, _setSupplierchecked),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           var now = new DateTime.now();
           Supplier item = Supplier(
+              Uuid.v4(),
             "Carlos H." + now.toString(),
             "Av. São Vicente de Paula, 473",
             "carlos@quicktech.no",
             "twitter.com",
-            "Software"
+            "Software",
+            false
           );
-          this._addProduct(item);
+          this._addSupplier(item);
         },
         child: Icon(Icons.add),
         backgroundColor: Colors.amber,

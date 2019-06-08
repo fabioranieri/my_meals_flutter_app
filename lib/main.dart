@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_quote_flutter_app/screens/login_screen.dart';
 import 'package:easy_quote_flutter_app/screens/home_screen.dart';
 import 'package:easy_quote_flutter_app/model/supplier.dart';
-
+import 'package:better_uuid/uuid.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -14,11 +14,13 @@ void main() {
       '/home': (context) => HomeScreen(
         items: List<Supplier>.generate(7,
               (i) => Supplier(
+                  Uuid.v4(),
                   "Carlos H." + i.toString(),
                   "Av. Artemio Dorsa, 120" + i.toString(),
                   "carlos@quicktech.no",
                   "twitter.com",
-                  "Software"
+                  "Software",
+                  true
               ),
         )
       ),
