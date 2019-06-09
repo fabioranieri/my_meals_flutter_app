@@ -6,16 +6,16 @@ import 'package:better_uuid/uuid.dart';
 
 void main() {
   runApp(MaterialApp(
-    title: 'Easy Quote App',
+    title: 'My Meals App',
     home: LoginScreen(),
     theme: ThemeData(primarySwatch: Colors.blue),
     initialRoute: '/home',
     routes: {
       '/home': (context) => HomeScreen(
-        items: List<Meal>.generate(7,
+        items: List<Meal>.generate(13,
               (i) => Meal(
                   Uuid.v4(),
-                  "Lunch" + i.toString(),
+                  "Lunch " + i.toString(),
                   DateTime.now(),
                   "Frango com Ovo",
                   "-",

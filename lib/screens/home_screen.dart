@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_meals_flutter_app/screens/login_screen.dart';
+import 'package:my_meals_flutter_app/screens/meal_details_screen.dart';
+import 'package:my_meals_flutter_app/widget/meal_card_list_item.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
-import 'package:my_meals_flutter_app/widget/supplier_card_list_item.dart';
 import 'package:better_uuid/uuid.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -40,6 +41,13 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  void _updateDetails(int position) {
+    Meal meal = items[position];
+    Navigator.push(context,
+      MaterialPageRoute(builder: (context) => MealDetailsScreen(item: meal)),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text('My Meals App'),
         automaticallyImplyLeading: false,
         elevation: 0.1,
-        backgroundColor: Colors.lightBlueAccent[300],
+        backgroundColor: Colors.redAccent,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.list),
@@ -57,20 +65,14 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
       ),
-      body: SupplierCardListItem(items, _setMealchecked),
+      body: MealCardListItem(items, _updateDetails),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           var now = new DateTime.now();
-          Meal item = Meal(
-              Uuid.v4(),
-              "Lunch - " + now.toString(),
-              DateTime.now(),
-              "Banana",
-              "-",
-              "Lunch",
-              true
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => MealDetailsScreen()),
           );
-          this._addMeal(item);
         },
         child: Icon(Icons.add),
         backgroundColor: Colors.amber,

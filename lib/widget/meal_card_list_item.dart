@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
 
-class SupplierCardListItem extends StatelessWidget {
+class MealCardListItem extends StatelessWidget {
   final List<Meal> items;
-  final Function setMealchecked;
+  // final Function setMealchecked;
+  final Function updateMeal;
 
-  SupplierCardListItem(this.items, this.setMealchecked);
+  MealCardListItem(this.items, this.updateMeal);
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +49,7 @@ class SupplierCardListItem extends StatelessWidget {
         decoration: new BoxDecoration(
             border: new Border(
                 right: new BorderSide(width: 1.0, color: Colors.white24))),
-        child: Icon(Icons.person, color: Colors.black26, size: 30.0),
+        child: Icon(Icons.fastfood, color: Colors.black26, size: 30.0),
       ),
       title: Text(
         item.name,
@@ -73,16 +74,11 @@ class SupplierCardListItem extends StatelessWidget {
       trailing:
         new Checkbox(value: item.isDone, onChanged: (value) {
         print('[Checkbox] onChanged' + value.toString());
-        setMealchecked(index, item.isDone);
+        updateMeal(index);
       }),
-       // Icon(Icons.keyboard_arrow_right, color: Colors.black26, size: 30.0),
       onTap: () {
         print("[ListItem] onTap");
-        /*
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => DetailsScreen())
-        );
-        */
+        updateMeal(index);
       },
     );
   }
