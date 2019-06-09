@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:easy_quote_flutter_app/screens/home_screen.dart';
+import 'package:my_meals_flutter_app/screens/home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   @override

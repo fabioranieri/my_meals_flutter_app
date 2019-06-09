@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:easy_quote_flutter_app/model/supplier.dart';
+import 'package:my_meals_flutter_app/model/meal.dart';
 
 class SupplierCardListItem extends StatelessWidget {
-  final List<Supplier> items;
-  final Function setSupplierchecked;
+  final List<Meal> items;
+  final Function setMealchecked;
 
-  SupplierCardListItem(this.items, this.setSupplierchecked);
+  SupplierCardListItem(this.items, this.setMealchecked);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class SupplierCardListItem extends StatelessWidget {
           itemCount: items.length,
           itemBuilder: (context, index) {
             final item = items[index];
-            if(item is Supplier) {
+            if(item is Meal) {
               return Card(
                 elevation: 3.0,
                 margin: new EdgeInsets.symmetric(horizontal: 7.0, vertical: 4.0),
@@ -40,7 +40,7 @@ class SupplierCardListItem extends StatelessWidget {
     return cardItem;
   }
 
-  Widget ListItem (Supplier item, int index) {
+  Widget ListItem (Meal item, int index) {
      return ListTile(
       contentPadding: EdgeInsets.symmetric(horizontal: 7.0, vertical: 3.0),
       leading: Container(
@@ -59,21 +59,21 @@ class SupplierCardListItem extends StatelessWidget {
            Expanded(
              flex: 4,
              child: Container(
-               child: Text(item.address),
+               child: Text(item.description),
              )),
            Expanded(
              flex: 2,
              child: Padding(
                  padding: EdgeInsets.only(left: 10.0),
-                 child: Text(item.category,)
+                 child: Text(item.type,)
              ),
            )
          ],
        ),
       trailing:
-        new Checkbox(value: item.isChecked, onChanged: (value) {
+        new Checkbox(value: item.isDone, onChanged: (value) {
         print('[Checkbox] onChanged' + value.toString());
-        setSupplierchecked(index, item.isChecked);
+        setMealchecked(index, item.isDone);
       }),
        // Icon(Icons.keyboard_arrow_right, color: Colors.black26, size: 30.0),
       onTap: () {

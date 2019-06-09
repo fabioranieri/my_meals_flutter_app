@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:easy_quote_flutter_app/screens/login_screen.dart';
-import 'package:easy_quote_flutter_app/screens/home_screen.dart';
-import 'package:easy_quote_flutter_app/model/supplier.dart';
+import 'package:my_meals_flutter_app/screens/login_screen.dart';
+import 'package:my_meals_flutter_app/screens/home_screen.dart';
+import 'package:my_meals_flutter_app/model/meal.dart';
 import 'package:better_uuid/uuid.dart';
 
 void main() {
@@ -12,14 +12,14 @@ void main() {
     initialRoute: '/home',
     routes: {
       '/home': (context) => HomeScreen(
-        items: List<Supplier>.generate(7,
-              (i) => Supplier(
+        items: List<Meal>.generate(7,
+              (i) => Meal(
                   Uuid.v4(),
-                  "Carlos H." + i.toString(),
-                  "Av. Artemio Dorsa, 120" + i.toString(),
-                  "carlos@quicktech.no",
-                  "twitter.com",
-                  "Software",
+                  "Lunch" + i.toString(),
+                  DateTime.now(),
+                  "Frango com Ovo",
+                  "-",
+                  "Lunch",
                   true
               ),
         )

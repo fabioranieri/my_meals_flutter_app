@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:easy_quote_flutter_app/screens/login_screen.dart';
-import 'package:easy_quote_flutter_app/model/supplier.dart';
-import 'package:easy_quote_flutter_app/widget/supplier_card_list_item.dart';
+import 'package:my_meals_flutter_app/screens/login_screen.dart';
+import 'package:my_meals_flutter_app/model/meal.dart';
+import 'package:my_meals_flutter_app/widget/supplier_card_list_item.dart';
 import 'package:better_uuid/uuid.dart';
 
 class HomeScreen extends StatefulWidget {
-  final List<Supplier> items;
+  final List<Meal> items;
 
   const HomeScreen({Key key, this.items}) : super(key: key);
 
@@ -17,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Supplier> items;
+  List<Meal> items;
   _HomeScreenState({Key key, @required this.items});
 
   @override
@@ -26,15 +26,15 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
-  void _addSupplier(Supplier item) {
+  void _addMeal(Meal item) {
     setState(() {
       items.add(item);
     });
   }
 
-  void _setSupplierchecked(int position, bool isChecked) {
+  void _setMealchecked(int position, bool isChecked) {
     var suppliers = items;
-    suppliers[position].isChecked = isChecked == true ? false : true;
+    suppliers[position].isDone = isChecked == true ? false : true;
     setState(() {
       items = suppliers;
     });
@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('EasyQuote App'),
+        title: Text('My Meals App'),
         automaticallyImplyLeading: false,
         elevation: 0.1,
         backgroundColor: Colors.lightBlueAccent[300],
@@ -57,20 +57,20 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
       ),
-      body: SupplierCardListItem(items, _setSupplierchecked),
+      body: SupplierCardListItem(items, _setMealchecked),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           var now = new DateTime.now();
-          Supplier item = Supplier(
+          Meal item = Meal(
               Uuid.v4(),
-            "Carlos H." + now.toString(),
-            "Av. São Vicente de Paula, 473",
-            "carlos@quicktech.no",
-            "twitter.com",
-            "Software",
-            false
+              "Lunch - " + now.toString(),
+              DateTime.now(),
+              "Banana",
+              "-",
+              "Lunch",
+              true
           );
-          this._addSupplier(item);
+          this._addMeal(item);
         },
         child: Icon(Icons.add),
         backgroundColor: Colors.amber,
