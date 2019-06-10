@@ -23,8 +23,8 @@ void main() {
                   true
               ),
         )
-      ),
-      '/login': (context) => LoginScreen(),
+      )
+      //'/login': (context) => LoginScreen(),
     },
   ));
 }

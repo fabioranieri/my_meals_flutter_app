@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
+import 'package:my_meals_flutter_app/screens/take_picture_screen.dart';
+import 'dart:io';
+import 'package:camera/camera.dart';
 
 class MealDetailsSaveForm extends StatelessWidget {
   final Meal item;
@@ -28,7 +31,7 @@ class MealDetailsSaveForm extends StatelessWidget {
       child: TextFormField(
         autofocus: true,
         keyboardType: TextInputType.text,
-        focusNode: _nameFocusNode,
+        //focusNode: _nameFocusNode,
         decoration: InputDecoration(labelText: 'Nome'),
         initialValue: item == null ? '' : item.name,
         validator: (String value) {
@@ -44,7 +47,7 @@ class MealDetailsSaveForm extends StatelessWidget {
   Widget _buildTypeTextField() {
     return Container(
       child: TextFormField(
-        focusNode: _typeFocusNode,
+        //focusNode: _typeFocusNode,
         decoration: InputDecoration(labelText: 'Tipo de refeição'),
         initialValue: item == null ? '' : item.type,
         validator: (String value) {
@@ -71,7 +74,7 @@ class MealDetailsSaveForm extends StatelessWidget {
   Widget _buildDescriptionTextField() {
     return Container(
       child: TextFormField(
-        focusNode: _descriptionFocusNode,
+        //focusNode: _descriptionFocusNode,
         decoration: InputDecoration(
             labelText: 'Descrição/Obs.',
             // icon: Icon(Icons.description)
@@ -80,6 +83,53 @@ class MealDetailsSaveForm extends StatelessWidget {
         maxLines: 4,
         onSaved: (String value) { _formData['description'] = value;},
       ),
+    );
+  }
+
+  Future<void> _pickPhoto(BuildContext context) async {
+    final cameras = await availableCameras();
+    final firstCamera = cameras.first;
+
+    Navigator.push(context,
+      MaterialPageRoute(builder: (context) => TakePictureScreen(camera: firstCamera)),
+    );
+  }
+
+  Widget _buildButtom(BuildContext context) {
+    return Container(
+      height: 150.0,
+      padding: EdgeInsets.all(10.0),
+      child: Column(children: [
+        Text(
+          'Pick an Image',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        SizedBox(
+          height: 10.0,
+        ),
+        FlatButton(
+          textColor: Theme.of(context).primaryColor,
+          child: Text('Use Camera'),
+          onPressed: () {
+            print('onPressed');
+            _pickPhoto(context);
+          },
+        ),
+        FlatButton(
+          textColor: Theme.of(context).primaryColor,
+          child: Text('Use Gallery'),
+          onPressed: () {
+            print('onPressed');
+            _pickPhoto(context);
+          },
+        )
+      ]),
+    );
+  }
+
+  Widget _buildImageField(String imagePath) {
+    return Container(
+      child: Image.file(File(imagePath)),
     );
   }
 
@@ -122,6 +172,7 @@ class MealDetailsSaveForm extends StatelessWidget {
               _buildTypeTextField(),
               _buildTimeTextField(),
               _buildDescriptionTextField(),
+              _buildButtom(context),
               SizedBox(
                 height: 10.0,
               ),
