@@ -5,17 +5,19 @@ class Meal {
   String name;
   DateTime time;
   String description;
-  String recipe_link;
+  String recipeLink;
   String type;
   bool isDone;
+  String photo;
 
   Meal(
       this.id,
       this.name,
       this.time,
       this.description,
-      this.recipe_link,
+      this.recipeLink,
       this.type,
       this.isDone,
+      this.photo
   );
 }

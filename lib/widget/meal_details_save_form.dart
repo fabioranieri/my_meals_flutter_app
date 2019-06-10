@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
 import 'package:my_meals_flutter_app/screens/take_picture_screen.dart';
-import 'dart:io';
 import 'package:camera/camera.dart';
+import 'dart:typed_data';
+import 'dart:convert';
 
 class MealDetailsSaveForm extends StatelessWidget {
-  final Meal item;
+  final Meal meal;
   final Function addMeal;
   final Function updateMeal;
+  final Function setMealPhoto;
+
   final Map<String, dynamic> _formData = {
     'id': null,
     'name': null,
@@ -24,16 +27,16 @@ class MealDetailsSaveForm extends StatelessWidget {
   static final _descriptionFocusNode = FocusNode();
   static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  MealDetailsSaveForm({this.item, this.updateMeal, this.addMeal});
+  MealDetailsSaveForm({this.meal, this.updateMeal, this.addMeal, this.setMealPhoto});
 
   Widget _buildNameTextField() {
     return Container(
       child: TextFormField(
-        autofocus: true,
+        // autofocus: true,
         keyboardType: TextInputType.text,
         //focusNode: _nameFocusNode,
         decoration: InputDecoration(labelText: 'Nome'),
-        initialValue: item == null ? '' : item.name,
+        initialValue: meal == null ? '' : meal.name,
         validator: (String value) {
           if (value.isEmpty || value.length < 3) {
             return 'Nome é obrigatório e deve ter no mínimo 3 caracteres.';
@@ -49,7 +52,7 @@ class MealDetailsSaveForm extends StatelessWidget {
       child: TextFormField(
         //focusNode: _typeFocusNode,
         decoration: InputDecoration(labelText: 'Tipo de refeição'),
-        initialValue: item == null ? '' : item.type,
+        initialValue: meal == null ? '' : meal.type,
         validator: (String value) {
           if (value.isEmpty || value.length < 3) {
             return 'Tipo é obrigatório e deve ter no mínimo 3 caracteres.';
@@ -61,7 +64,7 @@ class MealDetailsSaveForm extends StatelessWidget {
   }
 
   Widget _buildTimeTextField() {
-    var timeNow =  item == null ? '' : item.time;
+    var timeNow =  meal == null ? '' : meal.time;
     return Container(
       child: Text('Horário: '+ timeNow.toString() +  ' h',
         textAlign: TextAlign.left,
@@ -79,58 +82,46 @@ class MealDetailsSaveForm extends StatelessWidget {
             labelText: 'Descrição/Obs.',
             // icon: Icon(Icons.description)
         ),
-        initialValue: item == null ? '' : item.description,
+        initialValue: meal == null ? '' : meal.description,
         maxLines: 4,
         onSaved: (String value) { _formData['description'] = value;},
       ),
     );
   }
 
-  Future<void> _pickPhoto(BuildContext context) async {
-    final cameras = await availableCameras();
-    final firstCamera = cameras.first;
-
-    Navigator.push(context,
-      MaterialPageRoute(builder: (context) => TakePictureScreen(camera: firstCamera)),
-    );
-  }
-
   Widget _buildButtom(BuildContext context) {
     return Container(
-      height: 150.0,
+      height: 100.0,
       padding: EdgeInsets.all(10.0),
       child: Column(children: [
         Text(
-          'Pick an Image',
+          'Photo da refeição',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         SizedBox(
-          height: 10.0,
+          height: 5.0,
         ),
         FlatButton(
           textColor: Theme.of(context).primaryColor,
           child: Text('Use Camera'),
           onPressed: () {
-            print('onPressed');
             _pickPhoto(context);
           },
         ),
-        FlatButton(
-          textColor: Theme.of(context).primaryColor,
-          child: Text('Use Gallery'),
-          onPressed: () {
-            print('onPressed');
-            _pickPhoto(context);
-          },
-        )
       ]),
     );
   }
 
-  Widget _buildImageField(String imagePath) {
-    return Container(
-      child: Image.file(File(imagePath)),
-    );
+  Widget _buildImageField() {
+    if(meal.photo == null || meal.photo.length == 0) {
+      return Container();
+    } else {
+      Uint8List bytes = base64.decode(meal.photo);
+      Uint8List ints = bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
+      return Container(
+        child: Image.memory(ints, fit: BoxFit.fitWidth),
+      );
+    }
   }
 
   void _submitForm() {
@@ -141,7 +132,7 @@ class MealDetailsSaveForm extends StatelessWidget {
       return;
     }
     _formKey.currentState.save();
-    if (item == null) {
+    if (meal == null) {
       // widget.addMeal(_formData);
     } else {
       // widget.updateMealt(widget.mealIndex, _formData);
@@ -153,6 +144,17 @@ class MealDetailsSaveForm extends StatelessWidget {
     print('Saved');
     // TODO saveDetails
     // Navigator.pushReplacementNamed(context, '/home');
+  }
+
+  Future<void> _pickPhoto(BuildContext context) async {
+    final cameras = await availableCameras();
+    final firstCamera = cameras.first;
+
+    final result = await Navigator.push(context,
+      MaterialPageRoute(builder: (context) => TakePictureScreen(camera: firstCamera)),
+    );
+
+    setMealPhoto(result);
   }
 
   @override
@@ -173,6 +175,7 @@ class MealDetailsSaveForm extends StatelessWidget {
               _buildTimeTextField(),
               _buildDescriptionTextField(),
               _buildButtom(context),
+              _buildImageField(),
               SizedBox(
                 height: 10.0,
               ),

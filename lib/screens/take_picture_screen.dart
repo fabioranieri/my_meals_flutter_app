@@ -65,16 +65,11 @@ class TakePictureScreenState extends State<TakePictureScreen> {
 
             await _controller.takePicture(path);
 
-            // TODO push back to original screen
-            print('push back to original screen' + path.toString());
-/*            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => DisplayPictureScreen(imagePath: path),
-              ),
-            );*/
+            Navigator.pop(context, path.toString());
+
           } catch (e) {
             print(e);
+            Navigator.pop(context, -1);
           }
         },
       ),

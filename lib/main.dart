@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_meals_flutter_app/screens/login_screen.dart';
 import 'package:my_meals_flutter_app/screens/home_screen.dart';
+import 'package:my_meals_flutter_app/screens/take_picture_screen.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
 import 'package:better_uuid/uuid.dart';
 
@@ -20,10 +21,12 @@ void main() {
                   "Frango com Ovo",
                   "-",
                   "Lunch",
-                  true
+                  true,
+                  ""
               ),
         )
-      )
+      ),
+      '/take-picture': (context) =>  TakePictureScreen()
       //'/login': (context) => LoginScreen(),
     },
   ));
