@@ -2,13 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
 
 class MealDetailsSaveForm extends StatelessWidget {
-  final Function updateMeal;
-  final Function addMeal;
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final Meal item;
-  final _typeFocusNode = FocusNode();
-  final _timeFocusNode = FocusNode();
-  final _descriptionFocusNode = FocusNode();
+  final Function addMeal;
+  final Function updateMeal;
   final Map<String, dynamic> _formData = {
     'id': null,
     'name': null,
@@ -20,17 +16,19 @@ class MealDetailsSaveForm extends StatelessWidget {
     'isDone': null,
     'image': null,
   };
-  // FocusNode _nameFocusNode = FocusNode();
-  // FocusNode nodeOne = FocusNode();
+  static final _nameFocusNode = FocusNode();
+  static final _typeFocusNode = FocusNode();
+  static final _descriptionFocusNode = FocusNode();
+  static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   MealDetailsSaveForm({this.item, this.updateMeal, this.addMeal});
 
   Widget _buildNameTextField() {
     return Container(
       child: TextFormField(
-        // autofocus: true,
+        autofocus: true,
         keyboardType: TextInputType.text,
-        //focusNode: nodeOne,
-        // focusNode: _nameFocusNode,
+        focusNode: _nameFocusNode,
         decoration: InputDecoration(labelText: 'Nome'),
         initialValue: item == null ? '' : item.name,
         validator: (String value) {
@@ -46,7 +44,7 @@ class MealDetailsSaveForm extends StatelessWidget {
   Widget _buildTypeTextField() {
     return Container(
       child: TextFormField(
-        // focusNode: _typeFocusNode,
+        focusNode: _typeFocusNode,
         decoration: InputDecoration(labelText: 'Tipo de refeição'),
         initialValue: item == null ? '' : item.type,
         validator: (String value) {
@@ -73,7 +71,7 @@ class MealDetailsSaveForm extends StatelessWidget {
   Widget _buildDescriptionTextField() {
     return Container(
       child: TextFormField(
-        // focusNode: _descriptionFocusNode,
+        focusNode: _descriptionFocusNode,
         decoration: InputDecoration(
             labelText: 'Descrição/Obs.',
             // icon: Icon(Icons.description)
