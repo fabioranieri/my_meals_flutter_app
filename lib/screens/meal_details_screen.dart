@@ -1,45 +1,45 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
 import 'package:my_meals_flutter_app/widget/meal_details_save_form.dart';
+import 'dart:io';
 
 class MealDetailsScreen extends StatefulWidget {
-  final Meal item;
+  final Meal meal;
 
-  const MealDetailsScreen({Key key, this.item}) : super(key: key);
+  const MealDetailsScreen({Key key, this.meal}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
     print('[MealDetailsScreen Widget] createState()');
-    return _MealDetailsState(item: this.item);
+    return _MealDetailsState(meal: this.meal);
   }
 }
 
 class _MealDetailsState extends State<MealDetailsScreen> {
 
-  Meal item;
-  _MealDetailsState({Key key, @required this.item});
+  Meal _meal;
+  Meal meal;
+  _MealDetailsState({Key key, @required this.meal});
 
   @override
   void initState() {
     super.initState();
-    setState(() {item;});
+    setState(() {_meal = meal;});
   }
 
-  // item: this.item, addMeal: _addMeal
   void _updateMeal(Meal item) {
-    Meal meal = item;
-    //TODO past to home screen
-    /*Navigator.push(context,
-      MaterialPageRoute(builder: (context) => MealDetailsScreen(item: meal)),
-    );*/
   }
 
-  void _addMeal(Meal item) {
-    Meal meal = item;
-    //TODO past to home screen
-    /*Navigator.push(context,
-      MaterialPageRoute(builder: (context) => MealDetailsScreen(item: meal)),
-    );*/
+  void _setMealPhoto(String photo) {
+    print("_setMealPhoto" + photo.toString());
+    File imageFile = new File(photo);
+    List<int> imageBytes = imageFile.readAsBytesSync();
+    String base64Image = base64.encode(imageBytes);
+    setState(() {_meal.photo = base64Image;});
+  }
+
+  void _addMeal(Meal meal) {
   }
 
   @override
@@ -50,7 +50,12 @@ class _MealDetailsState extends State<MealDetailsScreen> {
         elevation: 0.1,
           backgroundColor: Colors.redAccent,
       ),
-      body: MealDetailsSaveForm(item: item, addMeal: _addMeal, updateMeal: _updateMeal)
+      body: MealDetailsSaveForm(
+          meal: _meal,
+          addMeal: _addMeal,
+          updateMeal: _updateMeal,
+          setMealPhoto: _setMealPhoto,
+      )
     );
   }
 }

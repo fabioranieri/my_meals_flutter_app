@@ -3,7 +3,6 @@ import 'package:my_meals_flutter_app/screens/login_screen.dart';
 import 'package:my_meals_flutter_app/screens/meal_details_screen.dart';
 import 'package:my_meals_flutter_app/widget/meal_card_list_item.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
-import 'package:better_uuid/uuid.dart';
 
 class HomeScreen extends StatefulWidget {
   final List<Meal> items;
@@ -44,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void _updateDetails(int position) {
     Meal meal = items[position];
     Navigator.push(context,
-      MaterialPageRoute(builder: (context) => MealDetailsScreen(item: meal)),
+      MaterialPageRoute(builder: (context) => MealDetailsScreen(meal: meal)),
     );
   }
 
@@ -68,7 +67,6 @@ class _HomeScreenState extends State<HomeScreen> {
       body: MealCardListItem(items, _updateDetails),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          var now = new DateTime.now();
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => MealDetailsScreen()),
