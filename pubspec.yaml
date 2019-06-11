@@ -27,6 +27,7 @@ dependencies:
   camera:
   path_provider:
   path:
+  provider: ^2.0.0
 
 dev_dependencies:
   flutter_test:

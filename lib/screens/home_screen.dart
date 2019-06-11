@@ -3,6 +3,8 @@ import 'package:my_meals_flutter_app/screens/login_screen.dart';
 import 'package:my_meals_flutter_app/screens/meal_details_screen.dart';
 import 'package:my_meals_flutter_app/widget/meal_card_list_item.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
+import 'package:my_meals_flutter_app/shared_state/meal_list.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   final List<Meal> items;
@@ -22,26 +24,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    print('[_HomeScreenState] initState');
     super.initState();
   }
 
-  void _addMeal(Meal item) {
-    setState(() {
-      items.add(item);
-    });
-  }
-
-  void _setMealchecked(int position, bool isChecked) {
-    var suppliers = items;
-    suppliers[position].isDone = isChecked == true ? false : true;
-    setState(() {
-      items = suppliers;
-    });
-  }
-
   void _updateDetails(int position) {
-    Meal meal = items[position];
+    final _meallist = Provider.of<MealList>(context);
+    Meal meal = _meallist.meallist[position];
     Navigator.push(context,
       MaterialPageRoute(builder: (context) => MealDetailsScreen(meal: meal)),
     );
@@ -49,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final _meallist = Provider.of<MealList>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('My Meals App'),
@@ -64,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
       ),
-      body: MealCardListItem(items, _updateDetails),
+      body: MealCardListItem(_meallist.meallist, _updateDetails),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
