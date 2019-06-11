@@ -4,12 +4,14 @@ import 'package:my_meals_flutter_app/screens/home_screen.dart';
 import 'package:my_meals_flutter_app/screens/tab_bar.dart';
 import 'package:my_meals_flutter_app/screens/take_picture_screen.dart';
 import 'package:my_meals_flutter_app/shared_state/meal_list.dart';
+import 'package:my_meals_flutter_app/shared_state/my_meal_list.dart';
 
 void main() {
   runApp(
       MultiProvider(
           providers: [
-            ChangeNotifierProvider(builder: (context) => MealList()),
+            ChangeNotifierProvider( builder: (context) => MealList()),
+            ChangeNotifierProvider( builder: (context) => MyMealList()),
           ],
           child: MaterialApp(
             title: 'My Meals App',
