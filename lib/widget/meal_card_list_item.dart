@@ -3,7 +3,6 @@ import 'package:my_meals_flutter_app/model/meal.dart';
 
 class MealCardListItem extends StatelessWidget {
   final List<Meal> items;
-  // final Function setMealchecked;
   final Function updateMeal;
 
   MealCardListItem(this.items, this.updateMeal);

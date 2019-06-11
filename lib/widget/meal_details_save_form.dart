@@ -113,7 +113,7 @@ class MealDetailsSaveForm extends StatelessWidget {
   }
 
   Widget _buildImageField() {
-    if(meal.photo == null || meal.photo.length == 0) {
+    if(meal == null || meal.photo == null || meal.photo.length == 0) {
       return Container();
     } else {
       Uint8List bytes = base64.decode(meal.photo);
