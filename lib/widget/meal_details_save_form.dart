@@ -62,17 +62,6 @@ class MealDetailsSaveForm extends StatelessWidget {
     );
   }
 
-  Widget _buildTimeTextField() {
-    var timeNow =  meal == null ? '' : meal.time;
-    return Container(
-      child: Text('Horário: '+ timeNow.toString() +  ' h',
-        textAlign: TextAlign.left,
-        overflow: TextOverflow.ellipsis,
-        style: TextStyle(fontWeight: FontWeight.bold),
-      ),
-    );
-  }
-
   Widget _buildDescriptionTextField() {
     return Container(
       child: TextFormField(
@@ -88,21 +77,42 @@ class MealDetailsSaveForm extends StatelessWidget {
     );
   }
 
-  Widget _buildButtom(BuildContext context) {
+  Widget _buildPhotoLabel(BuildContext context) {
     return Container(
-      height: 100.0,
+      height: 70.0,
       padding: EdgeInsets.all(10.0),
       child: Column(children: [
+        SizedBox(
+          height: 20.0,
+        ),
         Text(
           'Photo da refeição',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         SizedBox(
-          height: 5.0,
+          height: 10.0,
         ),
-        FlatButton(
+      ]),
+    );
+  }
+
+  Widget _buildPhotoButtom(BuildContext context) {
+    return Container(
+      height: 80.0,
+      padding: EdgeInsets.all(10.0),
+      child: Column(children: [
+        SizedBox(
+          height: 10.0,
+        ),
+        OutlineButton(
           textColor: Theme.of(context).primaryColor,
-          child: Text('Use Camera'),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Icon(Icons.photo_camera, color: Theme.of(context).primaryColor,),
+              Text(' TIRAR PHOTO'),
+            ],
+          ),
           onPressed: () {
             _pickPhoto(context);
           },
@@ -161,10 +171,11 @@ class MealDetailsSaveForm extends StatelessWidget {
             children: <Widget>[
               _buildNameTextField(),
               _buildTypeTextField(),
-              _buildTimeTextField(),
-              _buildDescriptionTextField(),
-              _buildButtom(context),
+              _buildPhotoLabel(context),
               MealPhoto(meal),
+              _buildPhotoButtom(context),
+
+              _buildDescriptionTextField(),
               SizedBox(
                 height: 10.0,
               ),
