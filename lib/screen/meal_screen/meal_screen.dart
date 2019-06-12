@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:my_meals_flutter_app/screens/meal_details_screen.dart';
-import 'package:my_meals_flutter_app/widget/meal_card_list_item.dart';
+import 'package:my_meals_flutter_app/screen/meal_details_screen/meal_details_screen.dart';
+import 'package:my_meals_flutter_app/screen/meal_screen/meal_card_list_item.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
 import 'package:my_meals_flutter_app/shared_state/meal_list.dart';
 import 'package:provider/provider.dart';
 
-class HomeScreen extends StatefulWidget {
+class MealScreen extends StatefulWidget {
   final List<Meal> items;
 
-  const HomeScreen({Key key, this.items}) : super(key: key);
+  const MealScreen({Key key, this.items}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    print('[HomeScreen Widget] createState()');
-    return _HomeScreenState(items: this.items);
+    return _MealScreenState(items: this.items);
   }
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _MealScreenState extends State<MealScreen> {
   List<Meal> items;
-  _HomeScreenState({Key key, @required this.items});
+  _MealScreenState({Key key, @required this.items});
 
   @override
   void initState() {
@@ -42,6 +41,6 @@ class _HomeScreenState extends State<HomeScreen> {
             body: MealCardListItem(_meallist.meallist, _updateDetails),
             // floatingActionButton: AddMealFabButton(),
           );}
-          );
+    );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_meals_flutter_app/screens/home_screen.dart';
-import 'package:my_meals_flutter_app/screens/my_meals_screen.dart';
+import 'package:my_meals_flutter_app/screen/meal_screen/meal_screen.dart';
+import 'package:my_meals_flutter_app/screen/my_meal_screen/my_meals_screen.dart';
 
 class TabBarDefault extends StatelessWidget {
 
@@ -11,9 +11,6 @@ class TabBarDefault extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    textStyle() {
-      return new TextStyle(color: Colors.white, fontSize: 30.0);
-    }
 
     return new DefaultTabController(
       length: 2,
@@ -37,7 +34,7 @@ class TabBarDefault extends StatelessWidget {
         ),
         body: new TabBarView(
           children: [
-            HomeScreen(),
+            MealScreen(),
             MyMealsScreen(),
           ],
         ),

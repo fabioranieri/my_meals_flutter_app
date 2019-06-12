@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
-import 'package:my_meals_flutter_app/screens/meal_details_screen.dart';
+import 'package:my_meals_flutter_app/screen/meal_details_screen/meal_details_screen.dart';
 
 class AddMealFabButton extends StatelessWidget {
 
