@@ -11,7 +11,7 @@ class MyMealCardListItem extends StatelessWidget {
     Widget cardItem = Container();
 
     if(items.length > 0) {
-        cardItem = Container(
+      cardItem = Container(
         child: ListView.builder(
           scrollDirection: Axis.vertical,
           shrinkWrap: true,
@@ -26,7 +26,7 @@ class MyMealCardListItem extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: Colors.lightBlueAccent[300]
                   ),
-                  child: ListItem(item, index),
+                  child: listItem(item, index),
                 ),
               );
             }
@@ -34,50 +34,58 @@ class MyMealCardListItem extends StatelessWidget {
         ),
       );
     } else {
-      cardItem = Center(child: Text('No items found, please add some!'));
+      cardItem = Center(child: Text('Não existe itens na lista, por favor adicione.'));
     }
     return cardItem;
   }
 
-  Widget ListItem (Meal item, int index) {
-     return ListTile(
-      contentPadding: EdgeInsets.symmetric(horizontal: 7.0, vertical: 3.0),
-      leading: Container(
-        padding: EdgeInsets.only(right: 1.0),
-        decoration: new BoxDecoration(
-            border: new Border(
-                right: new BorderSide(width: 1.0, color: Colors.white24))),
-        child: Icon(Icons.fastfood, color: Colors.black26, size: 30.0),
-      ),
-      title: Text(
-        item.name,
-        style: TextStyle(fontWeight: FontWeight.w700),
-      ),
-       subtitle: Row(
-         children: <Widget>[
-           Expanded(
-             flex: 4,
-             child: Container(
-               child: Text(item.description),
-             )),
-           Expanded(
-             flex: 2,
-             child: Padding(
-                 padding: EdgeInsets.only(left: 10.0),
-                 child: Text(item.type.toString())
-             ),
-           )
-         ],
-       ),
-      trailing:
-        new Checkbox(value: item.isDone, onChanged: (value) {
-        print('[Checkbox] onChanged' + value.toString());
-        // updateMeal(index);
-      }),
-      onTap: () {
-        print("[ListItem] onTap");
-        // updateMeal(index);
-      },
+  Widget listItem (Meal item, int index) {
+    return Column(
+        children: [
+          AspectRatio(
+            aspectRatio: 16.0 / 9.0,
+            child: Image.network(
+              'https://static-images.ifood.com.br/image/upload/f_auto,t_high/discoveries/ifood_capas_entregagratis_v8_junho_2019.jpg',
+              fit: BoxFit.cover,
+            ),
+          ),
+          detailsSection(item),
+        ]
     );
   }
+
+  Padding detailsSection(Meal item) {
+    return Padding(
+      padding: EdgeInsets.all(15.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            item.name,
+          ),
+          // Empty space:
+          SizedBox(height: 10.0),
+          Row(
+            children: [
+              Icon(Icons.bookmark, size: 20.0),
+              SizedBox(width: 5.0),
+              Text(
+                item.type,
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Icon(Icons.description, size: 20.0),
+              SizedBox(width: 5.0),
+              Text(
+                item.description,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
 }
