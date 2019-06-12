@@ -70,11 +70,11 @@ class MealCardListItem extends StatelessWidget {
            )
          ],
        ),
-      trailing:
+/*      trailing:
         new Checkbox(value: item.isDone, onChanged: (value) {
         print('[Checkbox] onChanged' + value.toString());
         updateMeal(index);
-      }),
+      }),*/
       onTap: () {
         print("[ListItem] onTap");
         updateMeal(index);

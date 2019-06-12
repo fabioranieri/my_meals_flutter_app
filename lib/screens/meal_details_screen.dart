@@ -51,7 +51,7 @@ class _MealDetailsState extends State<MealDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detalhes da refeição'),
+        title: Text('Registrar Refeição Feita'),
         elevation: 0.1,
           backgroundColor: Colors.redAccent,
       ),

@@ -20,7 +20,6 @@ class MealDetailsSaveForm extends StatelessWidget {
       null,
       null
   );
-
   static final _nameFocusNode = FocusNode();
   static final _typeFocusNode = FocusNode();
   static final _descriptionFocusNode = FocusNode();
@@ -174,7 +173,6 @@ class MealDetailsSaveForm extends StatelessWidget {
               _buildPhotoLabel(context),
               MealPhoto(meal),
               _buildPhotoButtom(context),
-
               _buildDescriptionTextField(),
               SizedBox(
                 height: 10.0,
@@ -184,7 +182,7 @@ class MealDetailsSaveForm extends StatelessWidget {
                 child: Container(
                   color: Colors.red,
                   padding: EdgeInsets.all(5.0),
-                  child: Text('SALVAR'),
+                  child: Text('SALVAR REFEIÇÃO FEITA'),
                 ),
                 textColor: Colors.white,
                 onPressed: _submitForm,
