@@ -17,7 +17,14 @@ void main() {
           child: MaterialApp(
             title: 'My Meals App',
             home: TabBarDefault(),
-            theme: ThemeData(primarySwatch: Colors.blue),
+            theme: ThemeData(
+              primarySwatch: Colors.red,
+              brightness: Brightness.light,
+              primaryColor: Colors.red[800],
+              accentColor: Colors.redAccent,
+              fontFamily: 'Montserrat',
+              backgroundColor: Colors.red[800],
+            ),
             initialRoute: '/tabbar-default',
             routes: {
               '/tabbar-default': (context) => TabBarDefault(),

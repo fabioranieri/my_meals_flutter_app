@@ -53,7 +53,7 @@ class _MealDetailsState extends State<MealDetailsScreen> {
       appBar: AppBar(
         title: Text('Registrar Refeição Feita'),
         elevation: 0.1,
-          backgroundColor: Colors.redAccent,
+          backgroundColor: Theme.of(context).primaryColor,
       ),
       body: MealDetailsSaveForm(
           meal: _meal,

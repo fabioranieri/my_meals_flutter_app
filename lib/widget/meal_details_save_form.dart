@@ -178,9 +178,9 @@ class MealDetailsSaveForm extends StatelessWidget {
                 height: 10.0,
               ),
               RaisedButton(
-                color: Colors.red,
+                color: Theme.of(context).primaryColor,
                 child: Container(
-                  color: Colors.red,
+                  color: Theme.of(context).primaryColor,
                   padding: EdgeInsets.all(5.0),
                   child: Text('SALVAR REFEIÇÃO FEITA'),
                 ),

@@ -22,7 +22,7 @@ class TabBarDefault extends StatelessWidget {
           title: Text('My Meals App'),
           automaticallyImplyLeading: false,
           elevation: 0.1,
-          backgroundColor: Colors.redAccent,
+          backgroundColor: Theme.of(context).backgroundColor,
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.list),

@@ -27,7 +27,7 @@ class MealCardListItem extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: Colors.lightBlueAccent[300]
                   ),
-                  child: listItem(item, index),
+                  child: listItem(item, index, context),
                 ),
               );
             }
@@ -40,7 +40,7 @@ class MealCardListItem extends StatelessWidget {
     return cardItem;
   }
 
-  Widget listItem (Meal item, int index) {
+  Widget listItem (Meal item, int index, BuildContext context) {
      return ListTile(
       contentPadding: EdgeInsets.symmetric(horizontal: 7.0, vertical: 3.0),
       leading: Container(
@@ -48,7 +48,7 @@ class MealCardListItem extends StatelessWidget {
         decoration: new BoxDecoration(
             border: new Border(
                 right: new BorderSide(width: 1.0, color: Colors.white24))),
-        child: Icon(Icons.fastfood, color: Colors.black26, size: 30.0),
+        child: Icon(Icons.fastfood, color: Theme.of(context).primaryColor, size: 30.0),
       ),
       title: Text(
         item.name,
@@ -76,7 +76,7 @@ class MealCardListItem extends StatelessWidget {
         updateMeal(index);
       }),*/
       onTap: () {
-        print("[ListItem] onTap");
+        // print("[ListItem] onTap");
         updateMeal(index);
       },
     );

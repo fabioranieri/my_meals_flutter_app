@@ -26,7 +26,7 @@ class AddMealFabButton extends StatelessWidget {
         );
       },
       child: Icon(Icons.add),
-      backgroundColor: Colors.amber,
+      backgroundColor: Theme.of(context).primaryColor,
       elevation: 7,
     );
   }
