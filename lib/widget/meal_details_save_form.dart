@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
 import 'package:my_meals_flutter_app/screens/take_picture_screen.dart';
 import 'package:camera/camera.dart';
-import 'dart:typed_data';
-import 'dart:convert';
+
+import 'meal_photo.dart';
 
 class MealDetailsSaveForm extends StatelessWidget {
   final Meal meal;
@@ -111,17 +111,16 @@ class MealDetailsSaveForm extends StatelessWidget {
     );
   }
 
-  Widget _buildImageField() {
-    if(meal == null || meal.photo == null || meal.photo.length == 0) {
+  // TODO remove later
+/*  Widget _buildImageField() {
+    if(meal == null || meal.photoIsEmpty()) {
       return Container();
     } else {
-      Uint8List bytes = base64.decode(meal.photo);
-      Uint8List ints = bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
       return Container(
-        child: Image.memory(ints, fit: BoxFit.fitWidth),
+        child: Image.memory(meal.decodePhoto(), fit: BoxFit.fitWidth),
       );
     }
-  }
+  }*/
 
   Future<void> _pickPhoto(BuildContext context) async {
     final cameras = await availableCameras();
@@ -165,7 +164,7 @@ class MealDetailsSaveForm extends StatelessWidget {
               _buildTimeTextField(),
               _buildDescriptionTextField(),
               _buildButtom(context),
-              _buildImageField(),
+              MealPhoto(meal),
               SizedBox(
                 height: 10.0,
               ),

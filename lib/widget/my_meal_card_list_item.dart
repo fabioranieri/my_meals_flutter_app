@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
 
+import 'meal_photo.dart';
+
 class MyMealCardListItem extends StatelessWidget {
   final List<Meal> items;
 
@@ -42,17 +44,29 @@ class MyMealCardListItem extends StatelessWidget {
   Widget listItem (Meal item, int index) {
     return Column(
         children: [
-          AspectRatio(
-            aspectRatio: 16.0 / 9.0,
-            child: Image.network(
-              'https://static-images.ifood.com.br/image/upload/f_auto,t_high/discoveries/ifood_capas_entregagratis_v8_junho_2019.jpg',
-              fit: BoxFit.cover,
-            ),
-          ),
+          MealPhoto(item),
           detailsSection(item),
         ]
     );
   }
+
+  //TODO remove this later
+/*  AspectRatio mealPhoto(Meal item) {
+    if(item.photoIsEmpty()) {
+      return AspectRatio(
+        aspectRatio: 16.0 / 9.0,
+        child: Image.network(
+          'https://static-images.ifood.com.br/image/upload/f_auto,t_high/discoveries/ifood_capas_entregagratis_v8_junho_2019.jpg',
+          fit: BoxFit.cover,
+        ),
+      );
+    } else {
+      return AspectRatio(
+        aspectRatio: 16.0 / 9.0,
+        child: Image.memory(item.decodePhoto(), fit: BoxFit.fitWidth),
+      );
+    }
+  }*/
 
   Padding detailsSection(Meal item) {
     return Padding(
@@ -60,8 +74,7 @@ class MyMealCardListItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            item.name,
+          Text( item.name == null ? '' : item.name,
           ),
           // Empty space:
           SizedBox(height: 10.0),
@@ -69,18 +82,14 @@ class MyMealCardListItem extends StatelessWidget {
             children: [
               Icon(Icons.bookmark, size: 20.0),
               SizedBox(width: 5.0),
-              Text(
-                item.type,
-              ),
+              Text( item.type == null ? '' : item.type ),
             ],
           ),
           Row(
             children: [
               Icon(Icons.description, size: 20.0),
               SizedBox(width: 5.0),
-              Text(
-                item.description,
-              ),
+              Text( item.description == null ? '' : item.description),
             ],
           ),
         ],

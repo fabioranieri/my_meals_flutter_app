@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:better_uuid/uuid.dart';
 
 class Meal {
@@ -20,4 +23,14 @@ class Meal {
       this.isDone,
       this.photo
   );
+
+  decodePhoto () {
+    Uint8List bytes = base64.decode(this.photo);
+    return bytes = bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
+  }
+
+  photoIsEmpty () {
+    return this.photo == null || this.photo.length == 0;
+  }
+
 }
