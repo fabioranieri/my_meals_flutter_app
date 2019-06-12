@@ -1,11 +1,11 @@
 import 'dart:collection';
 import 'package:better_uuid/uuid.dart';
 import 'package:flutter/material.dart';
-import 'package:my_meals_flutter_app/model/my_meal.dart';
+import 'package:my_meals_flutter_app/model/meal.dart';
 
 class MyMealList extends ChangeNotifier {
   /// Internal, private state of the MealList.
-  final List<MyMeal> _mymeallist = List<MyMeal>.generate(1, (i) => MyMeal(
+  final List<Meal> _mymeallist = List<Meal>.generate(1, (i) => Meal(
       Uuid.v4(),
       "Lunch " + i.toString(),
       DateTime.now(),
@@ -17,13 +17,13 @@ class MyMealList extends ChangeNotifier {
   ));
 
   /// An unmodifiable view of the items
-  UnmodifiableListView<MyMeal> get mymeallist => UnmodifiableListView(_mymeallist);
+  UnmodifiableListView<Meal> get mymeallist => UnmodifiableListView(_mymeallist);
 
   /// The current qtd of itens.
   int get itemsQtd => _mymeallist.length;
 
   /// Adds [mymeal] to _mymeallist. This is the only way to modify the _mymeallist from outside.
-  void add(MyMeal meal) {
+  void add(Meal meal) {
     _mymeallist.add(meal);
     // This call tells the widgets that are listening to this model to rebuild.
     notifyListeners();

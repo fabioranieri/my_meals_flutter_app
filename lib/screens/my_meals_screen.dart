@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_meals_flutter_app/widget/add_meal_fab_button.dart';
 import 'package:my_meals_flutter_app/widget/my_meal_card_list_item.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
 import 'package:my_meals_flutter_app/shared_state/my_meal_list.dart';
@@ -31,17 +32,7 @@ class _MyMealsScreenState extends State<MyMealsScreen> {
 
     return Scaffold(
       body: MyMealCardListItem(_mymeallist.mymeallist),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
- /*         Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => MealDetailsScreen()),
-          );
-*/        },
-        child: Icon(Icons.add),
-        backgroundColor: Colors.amber,
-        elevation: 7,
-      ),
+      floatingActionButton: AddMealFabButton(),
     );
   }
 }

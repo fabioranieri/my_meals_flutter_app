@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
+import 'package:my_meals_flutter_app/shared_state/my_meal_list.dart';
 import 'package:my_meals_flutter_app/widget/meal_details_save_form.dart';
 import 'dart:io';
+import 'package:provider/provider.dart';
 
 class MealDetailsScreen extends StatefulWidget {
   final Meal meal;
@@ -11,13 +13,11 @@ class MealDetailsScreen extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    print('[MealDetailsScreen Widget] createState()');
     return _MealDetailsState(meal: this.meal);
   }
 }
 
 class _MealDetailsState extends State<MealDetailsScreen> {
-
   Meal _meal;
   Meal meal;
   _MealDetailsState({Key key, @required this.meal});
@@ -32,14 +32,19 @@ class _MealDetailsState extends State<MealDetailsScreen> {
   }
 
   void _setMealPhoto(String photo) {
-    print("_setMealPhoto" + photo.toString());
     File imageFile = new File(photo);
     List<int> imageBytes = imageFile.readAsBytesSync();
     String base64Image = base64.encode(imageBytes);
+    print(_meal.photo);
     setState(() {_meal.photo = base64Image;});
+    print(_meal.photo);
   }
 
   void _addMeal(Meal meal) {
+    final _meallist = Provider.of<MyMealList>(context);
+    _meallist.add(meal);
+    print('[_meallist] - _addMeal' + _meallist.toString());
+    Navigator.pop(context);
   }
 
   @override

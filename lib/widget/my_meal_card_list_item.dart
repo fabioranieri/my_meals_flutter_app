@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_meals_flutter_app/model/my_meal.dart';
+import 'package:my_meals_flutter_app/model/meal.dart';
 
 class MyMealCardListItem extends StatelessWidget {
-  final List<MyMeal> items;
+  final List<Meal> items;
 
   MyMealCardListItem(this.items);
 
@@ -18,7 +18,7 @@ class MyMealCardListItem extends StatelessWidget {
           itemCount: items.length,
           itemBuilder: (context, index) {
             final item = items[index];
-            if(item is MyMeal) {
+            if(item is Meal) {
               return Card(
                 elevation: 3.0,
                 margin: new EdgeInsets.symmetric(horizontal: 7.0, vertical: 4.0),
@@ -39,7 +39,7 @@ class MyMealCardListItem extends StatelessWidget {
     return cardItem;
   }
 
-  Widget ListItem (MyMeal item, int index) {
+  Widget ListItem (Meal item, int index) {
      return ListTile(
       contentPadding: EdgeInsets.symmetric(horizontal: 7.0, vertical: 3.0),
       leading: Container(
@@ -64,7 +64,7 @@ class MyMealCardListItem extends StatelessWidget {
              flex: 2,
              child: Padding(
                  padding: EdgeInsets.only(left: 10.0),
-                 child: Text(item.type,)
+                 child: Text(item.type.toString())
              ),
            )
          ],

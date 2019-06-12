@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_meals_flutter_app/screens/my_meals_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:my_meals_flutter_app/screens/home_screen.dart';
 import 'package:my_meals_flutter_app/screens/tab_bar.dart';
@@ -21,6 +22,7 @@ void main() {
             routes: {
               '/tabbar-default': (context) => TabBarDefault(),
               '/home': (context) => HomeScreen(),
+              '/my-meal': (context) =>  MyMealsScreen(),
               '/take-picture': (context) =>  TakePictureScreen()
             },
           )

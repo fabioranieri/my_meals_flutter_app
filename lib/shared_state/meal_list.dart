@@ -14,7 +14,7 @@ class MealList extends ChangeNotifier {
       "Frango com Ovo",
       "-",
       "Lunch",
-      true,
+      false,
       ""
   ));
 

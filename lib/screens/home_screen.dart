@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_meals_flutter_app/screens/meal_details_screen.dart';
 import 'package:my_meals_flutter_app/widget/meal_card_list_item.dart';
+import 'package:my_meals_flutter_app/widget/add_meal_fab_button.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
 import 'package:my_meals_flutter_app/shared_state/meal_list.dart';
 import 'package:provider/provider.dart';
@@ -36,20 +37,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final _meallist = Provider.of<MealList>(context);
-    return Scaffold(
-      body: MealCardListItem(_meallist.meallist, _updateDetails),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => MealDetailsScreen()),
+    return Consumer<MealList>(
+        builder: (context, _meallist, child) {
+          return Scaffold(
+            body: MealCardListItem(_meallist.meallist, _updateDetails),
+            // floatingActionButton: AddMealFabButton(),
+          );}
           );
-        },
-        child: Icon(Icons.add),
-        backgroundColor: Colors.amber,
-        elevation: 7,
-      ),
-    );
   }
 }
