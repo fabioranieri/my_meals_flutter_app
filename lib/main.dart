@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:my_meals_flutter_app/screens/home_screen.dart';
-import 'package:my_meals_flutter_app/screens/take_picture_screen.dart';
-import 'package:my_meals_flutter_app/model/meal.dart';
-import 'package:my_meals_flutter_app/shared_state/meal_list.dart';
-
-import 'package:better_uuid/uuid.dart';
+import 'package:my_meals_flutter_app/screens/my_meals_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:my_meals_flutter_app/screens/home_screen.dart';
+import 'package:my_meals_flutter_app/screens/tab_bar.dart';
+import 'package:my_meals_flutter_app/screens/take_picture_screen.dart';
+import 'package:my_meals_flutter_app/shared_state/meal_list.dart';
+import 'package:my_meals_flutter_app/shared_state/my_meal_list.dart';
 
 void main() {
   runApp(
       MultiProvider(
           providers: [
-            ChangeNotifierProvider(builder: (context) => MealList()),
+            ChangeNotifierProvider( builder: (context) => MealList()),
+            ChangeNotifierProvider( builder: (context) => MyMealList()),
           ],
           child: MaterialApp(
             title: 'My Meals App',
-            home: HomeScreen(),
+            home: TabBarDefault(),
             theme: ThemeData(primarySwatch: Colors.blue),
-            initialRoute: '/home',
+            initialRoute: '/tabbar-default',
             routes: {
+              '/tabbar-default': (context) => TabBarDefault(),
               '/home': (context) => HomeScreen(),
+              '/my-meal': (context) =>  MyMealsScreen(),
               '/take-picture': (context) =>  TakePictureScreen()
-              //'/login': (context) => LoginScreen(),
             },
           )
       )

@@ -27,7 +27,7 @@ class MealCardListItem extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: Colors.lightBlueAccent[300]
                   ),
-                  child: ListItem(item, index),
+                  child: listItem(item, index),
                 ),
               );
             }
@@ -40,7 +40,7 @@ class MealCardListItem extends StatelessWidget {
     return cardItem;
   }
 
-  Widget ListItem (Meal item, int index) {
+  Widget listItem (Meal item, int index) {
      return ListTile(
       contentPadding: EdgeInsets.symmetric(horizontal: 7.0, vertical: 3.0),
       leading: Container(

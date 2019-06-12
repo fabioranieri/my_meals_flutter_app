@@ -2,26 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
 import 'package:my_meals_flutter_app/screens/take_picture_screen.dart';
 import 'package:camera/camera.dart';
-import 'dart:typed_data';
-import 'dart:convert';
+
+import 'meal_photo.dart';
 
 class MealDetailsSaveForm extends StatelessWidget {
   final Meal meal;
   final Function addMeal;
   final Function updateMeal;
   final Function setMealPhoto;
+  final Meal _formData = Meal(
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+  );
 
-  final Map<String, dynamic> _formData = {
-    'id': null,
-    'name': null,
-    'time': null,
-    'description': null,
-    'recipe_link': null,
-    'type': null,
-    'price': null,
-    'isDone': null,
-    'image': null,
-  };
   static final _nameFocusNode = FocusNode();
   static final _typeFocusNode = FocusNode();
   static final _descriptionFocusNode = FocusNode();
@@ -42,7 +41,7 @@ class MealDetailsSaveForm extends StatelessWidget {
             return 'Nome é obrigatório e deve ter no mínimo 3 caracteres.';
           }
         },
-        onSaved: (String value) { _formData['name'] = value;},
+        onSaved: (String value) { _formData.name = value;},
       ),
     );
   }
@@ -58,7 +57,7 @@ class MealDetailsSaveForm extends StatelessWidget {
             return 'Tipo é obrigatório e deve ter no mínimo 3 caracteres.';
           }
         },
-        onSaved: (String value) { _formData['name'] = value;},
+        onSaved: (String value) { _formData.type = value;},
       ),
     );
   }
@@ -84,7 +83,7 @@ class MealDetailsSaveForm extends StatelessWidget {
         ),
         initialValue: meal == null ? '' : meal.description,
         maxLines: 4,
-        onSaved: (String value) { _formData['description'] = value;},
+        onSaved: (String value) { _formData.description = value;},
       ),
     );
   }
@@ -112,39 +111,16 @@ class MealDetailsSaveForm extends StatelessWidget {
     );
   }
 
-  Widget _buildImageField() {
-    if(meal == null || meal.photo == null || meal.photo.length == 0) {
+  // TODO remove later
+/*  Widget _buildImageField() {
+    if(meal == null || meal.photoIsEmpty()) {
       return Container();
     } else {
-      Uint8List bytes = base64.decode(meal.photo);
-      Uint8List ints = bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
       return Container(
-        child: Image.memory(ints, fit: BoxFit.fitWidth),
+        child: Image.memory(meal.decodePhoto(), fit: BoxFit.fitWidth),
       );
     }
-  }
-
-  void _submitForm() {
-
-    if (!_formKey.currentState.validate()) {
-      print('[Invalid]');
-      print(_formData);
-      return;
-    }
-    _formKey.currentState.save();
-    if (meal == null) {
-      // widget.addMeal(_formData);
-    } else {
-      // widget.updateMealt(widget.mealIndex, _formData);
-    }
-
-    print('[Valide]');
-    print(_formData);
-
-    print('Saved');
-    // TODO saveDetails
-    // Navigator.pushReplacementNamed(context, '/home');
-  }
+  }*/
 
   Future<void> _pickPhoto(BuildContext context) async {
     final cameras = await availableCameras();
@@ -155,6 +131,19 @@ class MealDetailsSaveForm extends StatelessWidget {
     );
 
     setMealPhoto(result);
+  }
+
+  void _submitForm() {
+
+    if (!_formKey.currentState.validate()) {
+      print(_formData);
+      return;
+    }
+
+    _formData.photo = meal.photo != null ? meal.photo : null;
+    _formData.isDone = true;
+    _formKey.currentState.save();
+    addMeal(_formData);
   }
 
   @override
@@ -175,7 +164,7 @@ class MealDetailsSaveForm extends StatelessWidget {
               _buildTimeTextField(),
               _buildDescriptionTextField(),
               _buildButtom(context),
-              _buildImageField(),
+              MealPhoto(meal),
               SizedBox(
                 height: 10.0,
               ),
