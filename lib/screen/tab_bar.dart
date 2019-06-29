@@ -22,7 +22,7 @@ class TabBarDefault extends StatelessWidget {
           backgroundColor: Theme.of(context).backgroundColor,
           actions: <Widget>[
             IconButton(
-              icon: Icon(Icons.list),
+              icon: Icon(Icons.notifications),
               onPressed: () {
                 print("Side menu clicked");
               },
