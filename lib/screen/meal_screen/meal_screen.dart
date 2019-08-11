@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_meals_flutter_app/screen/meal_details_screen/meal_details_screen.dart';
 import 'package:my_meals_flutter_app/screen/meal_screen/meal_card_list_item.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
+import 'package:my_meals_flutter_app/service/meal_service.dart';
 import 'package:my_meals_flutter_app/shared_state/meal_list.dart';
 import 'package:provider/provider.dart';
 
@@ -19,10 +20,23 @@ class MealScreen extends StatefulWidget {
 class _MealScreenState extends State<MealScreen> {
   List<Meal> items;
   _MealScreenState({Key key, @required this.items});
+  MealService mealService;
 
   @override
   void initState() {
     super.initState();
+    mealService = MealService();
+    fetchAllMeal();
+  }
+
+  void fetchAllMeal() {
+    mealService.fetchAll()
+    .then((onValue) {
+      print("fetchAllMeal: $onValue");
+    })
+    .catchError((onError) {
+      print("catchError: $onError");
+    });
   }
 
   void _updateDetails(int position) {
