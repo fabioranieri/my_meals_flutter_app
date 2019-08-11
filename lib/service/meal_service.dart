@@ -10,17 +10,15 @@ class MealService {
     var response = await http.get(url);
     if (response.statusCode == 200) {
       var jsonResponse = convert.jsonDecode(response.body);
-      var mealList = convertToMealList(jsonResponse);
-      print(mealList);
+      var mealList = _convertToMealList(jsonResponse);
       return Future.value(mealList);
-    } else {
-      return Future.error(Exception("Request failed with status: ${response.statusCode}."));
     }
+    return Future.error(Exception("Request failed with status: ${response.statusCode}."));
   }
 
-  List<Meal> convertToMealList(List<dynamic> json) {
+  List<Meal> _convertToMealList(Map<String, dynamic> jsonResponse) {
     List<Meal> mealList = [];
-    json.forEach((item) {
+    jsonResponse.forEach((key, item) {
       mealList.add(Meal(
         Uuid.v4(),
         item['name'],
