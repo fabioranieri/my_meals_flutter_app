@@ -6,7 +6,7 @@ import 'package:better_uuid/uuid.dart';
 class Meal {
   Uuid id;
   String name;
-  DateTime time;
+  String time;
   String description;
   String recipeLink;
   String type;

@@ -8,7 +8,7 @@ class MyMealList extends ChangeNotifier {
   final List<Meal> _mymeallist = [
     Meal(Uuid.v4(),
         "Café da manhã" ,
-        DateTime.now(),
+        "08:00",
         "Torrada integral, ovo e leite de soja.",
         "-",
         "Café da manhã",

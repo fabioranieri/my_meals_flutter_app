@@ -30,6 +30,7 @@ dependencies:
   provider: ^2.0.0
   firebase_core: ^0.2.5  # add dependency for Firebase Core
   firebase_analytics: ^1.0.4  # add dependency for Google Analytics for Firebase
+  http: ^0.12.0+2
 
 dev_dependencies:
   flutter_test:
