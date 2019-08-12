@@ -20,6 +20,7 @@ void main() {
             ChangeNotifierProvider( builder: (context) => MyMealList()),
           ],
           child: MaterialApp(
+            debugShowCheckedModeBanner: false,
             title: 'My Meals App',
             home: TabBarDefault(),
             theme: ThemeData(

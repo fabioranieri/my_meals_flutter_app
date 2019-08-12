@@ -54,15 +54,6 @@ class _MealScreenState extends State<MealScreen> {
   Widget build(BuildContext context) {
     return Consumer<MealList>(
         builder: (context, _meallist, child) {
-          if (isIOS) {
-            return Scaffold(
-              body: _items.length == 0
-                  ? Loading()
-                  : MealCardListItem(_items, _updateDetails),
-              //TODO replace to use Statte manager
-              // body: MealCardListItem(_meallist.meallist, _updateDetails),
-            );
-          }
           return Scaffold(
             body: _items.length == 0
                 ? Loading()
