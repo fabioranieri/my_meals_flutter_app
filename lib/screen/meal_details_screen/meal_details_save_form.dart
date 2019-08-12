@@ -1,8 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_meals_flutter_app/common_widget/custom_button.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
 import 'package:my_meals_flutter_app/screen/take_picture_screen.dart';
 import 'package:camera/camera.dart';
 import 'package:my_meals_flutter_app/common_widget/meal_photo.dart';
+
+import '../../main.dart';
 
 class MealDetailsSaveForm extends StatelessWidget {
   final Meal meal;
@@ -62,11 +66,16 @@ class MealDetailsSaveForm extends StatelessWidget {
 
   Widget _buildDescriptionTextField() {
     return Container(
-      child: TextFormField(
+      child: isIOS ?
+      CupertinoTextField(
+        placeholder: 'Descrição/Obs.',
+        maxLines: 4,
+        onSubmitted: (String value) { _formData.description = value;},
+      ) : TextFormField(
         //focusNode: _descriptionFocusNode,
         decoration: InputDecoration(
-            labelText: 'Descrição/Obs.',
-            // icon: Icon(Icons.description)
+          labelText: 'Descrição/Obs.',
+          // icon: Icon(Icons.description)
         ),
         initialValue: meal == null ? '' : meal.description,
         maxLines: 4,
@@ -130,6 +139,17 @@ class MealDetailsSaveForm extends StatelessWidget {
     setMealPhoto(result);
   }
 
+  Widget _saveButton(BuildContext context) {
+    return CustomButton(
+      child: Container(
+        color: Theme.of(context).primaryColor,
+        padding: EdgeInsets.all(5.0),
+        child: Text('SALVAR REFEIÇÃO FEITA'),
+      ),
+      onPressed: _submitForm,
+    );
+  }
+
   void _submitForm() {
 
     if (!_formKey.currentState.validate()) {
@@ -165,16 +185,7 @@ class MealDetailsSaveForm extends StatelessWidget {
               SizedBox(
                 height: 10.0,
               ),
-              RaisedButton(
-                color: Theme.of(context).primaryColor,
-                child: Container(
-                  color: Theme.of(context).primaryColor,
-                  padding: EdgeInsets.all(5.0),
-                  child: Text('SALVAR REFEIÇÃO FEITA'),
-                ),
-                textColor: Colors.white,
-                onPressed: _submitForm,
-              )
+              _saveButton(context),
             ],
           ),
         ),

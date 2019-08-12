@@ -6,6 +6,11 @@ import 'package:my_meals_flutter_app/screen/tab_bar.dart';
 import 'package:my_meals_flutter_app/screen/take_picture_screen.dart';
 import 'package:my_meals_flutter_app/shared_state/meal_list.dart';
 import 'package:my_meals_flutter_app/shared_state/my_meal_list.dart';
+import 'package:flutter/foundation.dart' as foundation;
+
+import 'common_widget/custom_app.dart';
+
+bool get isIOS => foundation.defaultTargetPlatform == TargetPlatform.iOS;
 
 void main() {
   runApp(

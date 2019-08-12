@@ -3,9 +3,11 @@ import 'package:my_meals_flutter_app/screen/meal_details_screen/meal_details_scr
 import 'package:my_meals_flutter_app/screen/meal_screen/meal_card_list_item.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
 import 'package:my_meals_flutter_app/service/meal_service.dart';
-import 'package:my_meals_flutter_app/shared_state/Loading.dart';
+import 'package:my_meals_flutter_app/common_widget/loading.dart';
 import 'package:my_meals_flutter_app/shared_state/meal_list.dart';
 import 'package:provider/provider.dart';
+
+import '../../main.dart';
 
 class MealScreen extends StatefulWidget {
 
@@ -31,14 +33,11 @@ class _MealScreenState extends State<MealScreen> {
   }
 
   void fetchAllMeal() {
-    mealService.fetchAll()
-        .then((onValue) {
-      print("fetchAllMeal: $onValue");
+    mealService.fetchAll().then((onValue) {
       setState(() {
         _items = onValue;
       });
-    })
-        .catchError((onError) {
+    }).catchError((onError) {
       print("catchError: $onError");
     });
   }
@@ -55,13 +54,23 @@ class _MealScreenState extends State<MealScreen> {
   Widget build(BuildContext context) {
     return Consumer<MealList>(
         builder: (context, _meallist, child) {
+          if (isIOS) {
+            return Scaffold(
+              body: _items.length == 0
+                  ? Loading()
+                  : MealCardListItem(_items, _updateDetails),
+              //TODO replace to use Statte manager
+              // body: MealCardListItem(_meallist.meallist, _updateDetails),
+            );
+          }
           return Scaffold(
             body: _items.length == 0
                 ? Loading()
                 : MealCardListItem(_items, _updateDetails),
             //TODO replace to use Statte manager
             // body: MealCardListItem(_meallist.meallist, _updateDetails),
-          );}
+          );
+        }
     );
   }
 }
