@@ -11,7 +11,6 @@ class TabBarDefault extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return new DefaultTabController(
       length: 2,
       child: Scaffold(
