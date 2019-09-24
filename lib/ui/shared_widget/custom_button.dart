@@ -1,4 +1,5 @@
-import '../main.dart';
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (!isIOS) {
+    if (!Platform.isIOS) {
       return CupertinoButton(
         child: child,
         onPressed: onPressed,

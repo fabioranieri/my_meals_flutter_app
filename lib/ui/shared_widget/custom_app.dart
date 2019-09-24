@@ -1,18 +1,18 @@
 
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:my_meals_flutter_app/screen/meal_screen/meal_screen.dart';
-import 'package:my_meals_flutter_app/screen/my_meal_screen/my_meals_screen.dart';
-import 'package:my_meals_flutter_app/screen/tab_bar.dart';
-import 'package:my_meals_flutter_app/screen/take_picture_screen.dart';
-
-import '../main.dart';
+import 'package:my_meals_flutter_app/ui/screen/meal_screen/meal_screen.dart';
+import 'package:my_meals_flutter_app/ui/screen/my_meal_screen/my_meals_screen.dart';
+import 'package:my_meals_flutter_app/ui/screen/tab_bar.dart';
+import 'package:my_meals_flutter_app/ui/shared_widget/take_picture.dart';
 
 class CustomApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (isIOS) {
+    if (Platform.isIOS) {
       return CupertinoApp(
         title: 'My Meals App',
         home: TabBarDefault(),

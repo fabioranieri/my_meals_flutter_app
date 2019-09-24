@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_meals_flutter_app/screen/meal_screen/meal_screen.dart';
-import 'package:my_meals_flutter_app/screen/my_meal_screen/my_meals_screen.dart';
+import 'package:my_meals_flutter_app/ui/screen/meal_screen/meal_screen.dart';
+import 'package:my_meals_flutter_app/ui/screen/my_meal_screen/my_meals_screen'
+    '.dart';
 
 class TabBarDefault extends StatelessWidget {
 

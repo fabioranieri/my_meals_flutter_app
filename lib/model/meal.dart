@@ -32,5 +32,4 @@ class Meal {
   photoIsEmpty () {
     return this.photo == null || this.photo.length == 0;
   }
-
 }

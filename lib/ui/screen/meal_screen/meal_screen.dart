@@ -1,22 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:my_meals_flutter_app/screen/meal_details_screen/meal_details_screen.dart';
-import 'package:my_meals_flutter_app/screen/meal_screen/meal_card_list_item.dart';
+import 'package:my_meals_flutter_app/ui/screen/meal_details_screen/meal_details_screen.dart';
+import 'package:my_meals_flutter_app/ui/screen/meal_screen/meal_card_list.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
 import 'package:my_meals_flutter_app/service/meal_service.dart';
-import 'package:my_meals_flutter_app/common_widget/loading.dart';
+import 'package:my_meals_flutter_app/ui/shared_widget/loading.dart';
 import 'package:my_meals_flutter_app/shared_state/meal_list.dart';
 import 'package:provider/provider.dart';
 
-import '../../main.dart';
-
 class MealScreen extends StatefulWidget {
-
   const MealScreen();
 
   @override
-  State<StatefulWidget> createState() {
-    return _MealScreenState();
-  }
+  State<StatefulWidget> createState() => _MealScreenState();
 }
 
 class _MealScreenState extends State<MealScreen> {
@@ -28,11 +23,11 @@ class _MealScreenState extends State<MealScreen> {
   void initState() {
     super.initState();
     mealService = MealService();
-    fetchAllMeal();
+    _fetchAllMeal();
     _items = [];
   }
 
-  void fetchAllMeal() {
+  void _fetchAllMeal() {
     mealService.fetchAll().then((onValue) {
       setState(() {
         _items = onValue;
@@ -43,8 +38,8 @@ class _MealScreenState extends State<MealScreen> {
   }
 
   void _updateDetails(int position) {
-    final _meallist = Provider.of<MealList>(context);
-    Meal meal = _meallist.meallist[position];
+    final _mealList = Provider.of<MealList>(context);
+    Meal meal = _mealList.meallist[position];
     Navigator.push(context,
       MaterialPageRoute(builder: (context) => MealDetailsScreen(meal: meal)),
     );
@@ -53,7 +48,7 @@ class _MealScreenState extends State<MealScreen> {
   @override
   Widget build(BuildContext context) {
     return Consumer<MealList>(
-        builder: (context, _meallist, child) {
+        builder: (context, _mealList, child) {
           return Scaffold(
             body: _items.length == 0
                 ? Loading()

@@ -5,12 +5,8 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:async';
 
 class TakePictureScreen extends StatefulWidget {
+  const TakePictureScreen({Key key, @required this.camera,}) : super(key: key);
   final CameraDescription camera;
-
-  const TakePictureScreen({
-    Key key,
-    @required this.camera,
-  }) : super(key: key);
 
   @override
   TakePictureScreenState createState() => TakePictureScreenState();
@@ -57,16 +53,12 @@ class TakePictureScreenState extends State<TakePictureScreen> {
         onPressed: () async {
           try {
             await _initializeControllerFuture;
-
             final path = join(
               (await getTemporaryDirectory()).path,
               '${DateTime.now()}.png',
             );
-
             await _controller.takePicture(path);
-
             Navigator.pop(context, path.toString());
-
           } catch (e) {
             print(e);
             Navigator.pop(context, -1);

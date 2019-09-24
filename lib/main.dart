@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:my_meals_flutter_app/screen/my_meal_screen/my_meals_screen.dart';
+import 'package:my_meals_flutter_app/ui/screen/my_meal_screen/my_meals_screen'
+    '.dart';
 import 'package:provider/provider.dart';
-import 'package:my_meals_flutter_app/screen/meal_screen/meal_screen.dart';
-import 'package:my_meals_flutter_app/screen/tab_bar.dart';
-import 'package:my_meals_flutter_app/screen/take_picture_screen.dart';
+import 'package:my_meals_flutter_app/ui/screen/meal_screen/meal_screen.dart';
+import 'package:my_meals_flutter_app/ui/screen/tab_bar.dart';
+import 'package:my_meals_flutter_app/ui/shared_widget/take_picture.dart';
 import 'package:my_meals_flutter_app/shared_state/meal_list.dart';
 import 'package:my_meals_flutter_app/shared_state/my_meal_list.dart';
-import 'package:flutter/foundation.dart' as foundation;
-
-import 'common_widget/custom_app.dart';
-
-bool get isIOS => foundation.defaultTargetPlatform == TargetPlatform.iOS;
 
 void main() {
   runApp(

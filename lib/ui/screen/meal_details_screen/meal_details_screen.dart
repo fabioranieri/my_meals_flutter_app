@@ -2,14 +2,14 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
 import 'package:my_meals_flutter_app/shared_state/my_meal_list.dart';
-import 'package:my_meals_flutter_app/screen/meal_details_screen/meal_details_save_form.dart';
+import 'package:my_meals_flutter_app/ui/screen/meal_details_screen'
+    '/meal_details_save_form.dart';
 import 'dart:io';
 import 'package:provider/provider.dart';
 
 class MealDetailsScreen extends StatefulWidget {
+  MealDetailsScreen({Key key, this.meal}) : super(key: key);
   final Meal meal;
-
-  const MealDetailsScreen({Key key, this.meal}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -28,39 +28,34 @@ class _MealDetailsState extends State<MealDetailsScreen> {
     setState(() {_meal = meal;});
   }
 
-  void _updateMeal(Meal item) {
-  }
-
   void _setMealPhoto(String photo) {
     File imageFile = new File(photo);
     List<int> imageBytes = imageFile.readAsBytesSync();
     String base64Image = base64.encode(imageBytes);
-    print(_meal.photo);
     setState(() {_meal.photo = base64Image;});
-    print(_meal.photo);
+    // print(_meal.photo);
   }
 
   void _addMeal(Meal meal) {
-    final _meallist = Provider.of<MyMealList>(context);
-    _meallist.add(meal);
-    print('[_meallist] - _addMeal' + _meallist.toString());
+    final _mealList = Provider.of<MyMealList>(context);
+    _mealList.add(meal);
     Navigator.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Registrar Refeição Feita'),
-        elevation: 0.1,
+        appBar: AppBar(
+          title: Text('Registrar Refeição Feita'),
+          elevation: 0.1,
           backgroundColor: Theme.of(context).primaryColor,
-      ),
-      body: MealDetailsSaveForm(
+        ),
+        body: MealDetailsSaveForm(
           meal: _meal,
           addMeal: _addMeal,
-          updateMeal: _updateMeal,
+          updateMeal: () {},
           setMealPhoto: _setMealPhoto,
-      )
+        )
     );
   }
 }

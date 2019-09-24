@@ -1,34 +1,22 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:my_meals_flutter_app/common_widget/custom_button.dart';
+import 'package:my_meals_flutter_app/ui/shared_widget/custom_button.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
-import 'package:my_meals_flutter_app/screen/take_picture_screen.dart';
+import 'package:my_meals_flutter_app/ui/shared_widget/take_picture.dart';
 import 'package:camera/camera.dart';
-import 'package:my_meals_flutter_app/common_widget/meal_photo.dart';
-
-import '../../main.dart';
+import 'package:my_meals_flutter_app/ui/shared_widget/meal_photo.dart';
 
 class MealDetailsSaveForm extends StatelessWidget {
+  MealDetailsSaveForm({this.meal, this.updateMeal, this.addMeal, this.setMealPhoto});
   final Meal meal;
   final Function addMeal;
   final Function updateMeal;
   final Function setMealPhoto;
-  final Meal _formData = Meal(
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null
-  );
-  static final _nameFocusNode = FocusNode();
-  static final _typeFocusNode = FocusNode();
-  static final _descriptionFocusNode = FocusNode();
-  static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final Meal _formData = Meal(null, null, null, null, null, null, null, null);
 
-  MealDetailsSaveForm({this.meal, this.updateMeal, this.addMeal, this.setMealPhoto});
+  static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Widget _buildNameTextField() {
     return Container(
@@ -42,6 +30,7 @@ class MealDetailsSaveForm extends StatelessWidget {
           if (value.isEmpty || value.length < 3) {
             return 'Nome é obrigatório e deve ter no mínimo 3 caracteres.';
           }
+          return null;
         },
         onSaved: (String value) { _formData.name = value;},
       ),
@@ -58,6 +47,7 @@ class MealDetailsSaveForm extends StatelessWidget {
           if (value.isEmpty || value.length < 3) {
             return 'Tipo é obrigatório e deve ter no mínimo 3 caracteres.';
           }
+          return null;
         },
         onSaved: (String value) { _formData.type = value;},
       ),
@@ -66,16 +56,14 @@ class MealDetailsSaveForm extends StatelessWidget {
 
   Widget _buildDescriptionTextField() {
     return Container(
-      child: isIOS ?
+      child: Platform.isIOS ?
       CupertinoTextField(
         placeholder: 'Descrição/Obs.',
         maxLines: 4,
         onSubmitted: (String value) { _formData.description = value;},
       ) : TextFormField(
-        //focusNode: _descriptionFocusNode,
         decoration: InputDecoration(
           labelText: 'Descrição/Obs.',
-          // icon: Icon(Icons.description)
         ),
         initialValue: meal == null ? '' : meal.description,
         maxLines: 4,
