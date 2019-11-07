@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_meals_flutter_app/ui/screen/my_meal_screen/my_meals_screen'
-    '.dart';
+import 'package:my_meals_flutter_app/ui/meal_list/meal_list_screen.dart';
+import 'package:my_meals_flutter_app/ui/my_meal_list/my_meals_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:my_meals_flutter_app/ui/screen/meal_screen/meal_screen.dart';
-import 'package:my_meals_flutter_app/ui/screen/tab_bar.dart';
-import 'package:my_meals_flutter_app/ui/shared_widget/take_picture.dart';
+import 'package:my_meals_flutter_app/ui/tab_bar.dart';
 import 'package:my_meals_flutter_app/shared_state/meal_list.dart';
 import 'package:my_meals_flutter_app/shared_state/my_meal_list.dart';
 
@@ -30,9 +28,8 @@ void main() {
             initialRoute: '/tabbar-default',
             routes: {
               '/tabbar-default': (context) => TabBarDefault(),
-              '/home': (context) => MealScreen(),
+              '/home': (context) => MealListScreen(),
               '/my-meal': (context) =>  MyMealsScreen(),
-              '/take-picture': (context) =>  TakePictureScreen()
             },
           )
       )

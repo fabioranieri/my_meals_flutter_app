@@ -2,8 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
 import 'package:my_meals_flutter_app/shared_state/my_meal_list.dart';
-import 'package:my_meals_flutter_app/ui/screen/meal_details_screen'
-    '/meal_details_save_form.dart';
+import 'package:my_meals_flutter_app/ui/meal_details/meal_details_form.dart';
 import 'dart:io';
 import 'package:provider/provider.dart';
 

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_meals_flutter_app/ui/shared_widget/add_meal_fab_button.dart';
-import 'package:my_meals_flutter_app/ui/screen/my_meal_screen'
-    '/my_meal_card_list.dart';
+import 'package:my_meals_flutter_app/ui/my_meal_list/my_meal_card_list.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
 import 'package:my_meals_flutter_app/shared_state/my_meal_list.dart';
 import 'package:provider/provider.dart';

@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:my_meals_flutter_app/ui/screen/meal_details_screen/meal_details_screen.dart';
-import 'package:my_meals_flutter_app/ui/screen/meal_screen/meal_card_list.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
 import 'package:my_meals_flutter_app/service/meal_service.dart';
+import 'package:my_meals_flutter_app/ui/meal_details/meal_details_screen.dart';
+import 'package:my_meals_flutter_app/ui/meal_list/meal_card_list.dart';
 import 'package:my_meals_flutter_app/ui/shared_widget/loading.dart';
 import 'package:my_meals_flutter_app/shared_state/meal_list.dart';
 import 'package:provider/provider.dart';
 
-class MealScreen extends StatefulWidget {
-  const MealScreen();
+class MealListScreen extends StatefulWidget {
+  const MealListScreen();
 
   @override
   State<StatefulWidget> createState() => _MealScreenState();
 }
 
-class _MealScreenState extends State<MealScreen> {
+class _MealScreenState extends State<MealListScreen> {
   List<Meal> _items;
   _MealScreenState();
   MealService mealService;
@@ -53,7 +53,7 @@ class _MealScreenState extends State<MealScreen> {
             body: _items.length == 0
                 ? Loading()
                 : MealCardListItem(_items, _updateDetails),
-            //TODO replace to use Statte manager
+            // TODO replace to use Statte manager
             // body: MealCardListItem(_meallist.meallist, _updateDetails),
           );
         }
