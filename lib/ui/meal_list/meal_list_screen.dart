@@ -15,8 +15,8 @@ class MealListScreen extends StatefulWidget {
 }
 
 class _MealScreenState extends State<MealListScreen> {
-  List<Meal> _items;
   _MealScreenState();
+  List<Meal> _items;
   MealService mealService;
 
   @override
@@ -37,9 +37,9 @@ class _MealScreenState extends State<MealListScreen> {
     });
   }
 
-  void _updateDetails(int position) {
-    final _mealList = Provider.of<MealList>(context);
-    Meal meal = _mealList.meallist[position];
+  void _mealDetails(Meal meal) {
+    // final _mealList = Provider.of<MealList>(context);
+    // Meal meal = _mealList.meallist[position];
     Navigator.push(context,
       MaterialPageRoute(builder: (context) => MealDetailsScreen(meal: meal)),
     );
@@ -52,9 +52,7 @@ class _MealScreenState extends State<MealListScreen> {
           return Scaffold(
             body: _items.length == 0
                 ? Loading()
-                : MealCardListItem(_items, _updateDetails),
-            // TODO replace to use Statte manager
-            // body: MealCardListItem(_meallist.meallist, _updateDetails),
+                : MealCardListItem(items: _items, mealDetails: _mealDetails),
           );
         }
     );

@@ -7,59 +7,14 @@ import 'package:my_meals_flutter_app/model/meal.dart';
 class MealList extends ChangeNotifier {
 
   final List<Meal> _meallist = [
-    Meal(Uuid.v4(),
-        "Café da manhã" ,
-        "08:00",
-        "Torrada integral, ovo e leite de soja.",
-        "-",
-        "Café da manhã",
-        false,
-        ""
-    ),
-    Meal(Uuid.v4(),
-        "Iogurte ou uma fruta" ,
-        "08:00",
-        "Activia ou uma banana prata.",
-        "-",
-        "Lanche",
-        false,
-        ""
-    ),
-    Meal(Uuid.v4(),
-        "Almoço" ,
-        "08:00",
-        "Batata doce, frango grelhado e salada.",
-        "-",
-        "Comida",
-        false,
-        ""
-    ),
-    Meal(Uuid.v4(),
-        "Fruta" ,
-        "08:00",
-        "Maça, pera, melancia ou laranja",
-        "-",
-        "Lanche",
-        false,
-        ""
-    ),
-    Meal(Uuid.v4(),
-        "Janta" ,
-        "08:00",
-        "Batata doce, frango grelhado e salada.",
-        "-",
-        "Comida",
-        false,
-        ""
-    ),
-    Meal(Uuid.v4(),
-        "3 Ovos" ,
-        "08:00",
-        "Ovos cozidos",
-        "-",
-        "Lanche",
-        false,
-        ""
+    Meal(id: Uuid.v4(),
+        name: "Café da manhã" ,
+        time: "08:00",
+        description: "Torrada integral, ovo e leite de soja.",
+        recipeLink: "-",
+        type: "Café da manhã",
+        isDone: false,
+        photo: ""
     ),
   ];
 

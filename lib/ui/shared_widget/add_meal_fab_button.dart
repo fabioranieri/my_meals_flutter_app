@@ -13,17 +13,9 @@ class AddMealFabButton extends StatelessWidget {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => MealDetailsScreen(meal: Meal(
-              null,
-              null,
-              null,
-              null,
-              null,
-              null,
-              null,
-              null
-          )
-          )),
+          MaterialPageRoute(builder: (context) => MealDetailsScreen(
+              meal: Meal())
+          ),
         );
       },
       child: Icon(Icons.add),

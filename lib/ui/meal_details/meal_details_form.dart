@@ -14,7 +14,7 @@ class MealDetailsSaveForm extends StatelessWidget {
   final Function addMeal;
   final Function updateMeal;
   final Function setMealPhoto;
-  final Meal _formData = Meal(null, null, null, null, null, null, null, null);
+  final Meal _formData = Meal();
 
   static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -124,6 +124,9 @@ class MealDetailsSaveForm extends StatelessWidget {
       MaterialPageRoute(builder: (context) => TakePictureScreen(camera: firstCamera)),
     );
 
+    print('_pickPhoto');
+    print(result);
+
     setMealPhoto(result);
   }
 
@@ -139,7 +142,6 @@ class MealDetailsSaveForm extends StatelessWidget {
   }
 
   void _submitForm() {
-
     if (!_formKey.currentState.validate()) {
       print(_formData);
       return;

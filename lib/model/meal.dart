@@ -4,6 +4,17 @@ import 'dart:typed_data';
 import 'package:better_uuid/uuid.dart';
 
 class Meal {
+  Meal({
+    this.id,
+    this.name,
+    this.time,
+    this.description,
+    this.recipeLink,
+    this.type,
+    this.isDone,
+    this.photo
+  });
+
   Uuid id;
   String name;
   String time;
@@ -13,23 +24,14 @@ class Meal {
   bool isDone;
   String photo;
 
-  Meal(
-      this.id,
-      this.name,
-      this.time,
-      this.description,
-      this.recipeLink,
-      this.type,
-      this.isDone,
-      this.photo
-  );
-
   decodePhoto () {
     Uint8List bytes = base64.decode(this.photo);
-    return bytes = bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
+    return bytes = bytes.buffer.asUint8List(
+        bytes.offsetInBytes, bytes.lengthInBytes
+    );
   }
 
   photoIsEmpty () {
-    return this.photo == null || this.photo.length == 0;
+    return photo == null;
   }
 }

@@ -6,14 +6,13 @@ import 'package:my_meals_flutter_app/model/meal.dart';
 class MyMealList extends ChangeNotifier {
 
   final List<Meal> _mymeallist = [
-    Meal(Uuid.v4(),
-        "Café da manhã" ,
-        "08:00",
-        "Torrada integral, ovo e leite de soja.",
-        "-",
-        "Café da manhã",
-        false,
-        ""
+    Meal(id: Uuid.v4(),
+        name: "Café da manhã" ,
+        time: "08:00",
+        description: "Torrada integral, ovo e leite de soja.",
+        recipeLink: "-",
+        type: "Café da manhã",
+        isDone: false,
     ),
   ];
 

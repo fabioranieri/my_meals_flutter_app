@@ -20,14 +20,14 @@ class MealService {
     List<Meal> mealList = [];
     jsonResponse.forEach((key, item) {
       mealList.add(Meal(
-        Uuid.v4(),
-        item['name'],
-        item['time'],
-        item['description'],
-        item['recipeLink'],
-        item['type'],
-        item['isDone'],
-        item['photo'],
+        id: Uuid.v4(),
+        name: item['name'],
+        time: item['time'],
+        description: item['description'],
+        recipeLink: item['recipeLink'],
+        type: item['type'],
+        isDone: item['isDone'],
+        photo: item['photo'] ?? '',
       ));
     });
     return mealList;
