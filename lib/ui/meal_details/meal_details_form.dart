@@ -6,10 +6,16 @@ import 'package:my_meals_flutter_app/ui/shared_widget/custom_button.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
 import 'package:my_meals_flutter_app/ui/shared_widget/take_picture.dart';
 import 'package:camera/camera.dart';
-import 'package:my_meals_flutter_app/ui/shared_widget/meal_photo.dart';
+import 'package:my_meals_flutter_app/ui/meal_details/meal_photo.dart';
 
 class MealDetailsSaveForm extends StatelessWidget {
-  MealDetailsSaveForm({this.meal, this.updateMeal, this.addMeal, this.setMealPhoto});
+  MealDetailsSaveForm({
+    this.meal,
+    this.updateMeal,
+    this.addMeal,
+    this.setMealPhoto,
+  });
+
   final Meal meal;
   final Function addMeal;
   final Function updateMeal;
@@ -22,8 +28,8 @@ class MealDetailsSaveForm extends StatelessWidget {
     return Container(
       child: TextFormField(
         // autofocus: true,
+        // focusNode: _nameFocusNode,
         keyboardType: TextInputType.text,
-        //focusNode: _nameFocusNode,
         decoration: InputDecoration(labelText: 'Nome'),
         initialValue: meal == null ? '' : meal.name,
         validator: (String value) {
@@ -119,14 +125,10 @@ class MealDetailsSaveForm extends StatelessWidget {
   Future<void> _pickPhoto(BuildContext context) async {
     final cameras = await availableCameras();
     final firstCamera = cameras.first;
-
     final result = await Navigator.push(context,
-      MaterialPageRoute(builder: (context) => TakePictureScreen(camera: firstCamera)),
+      MaterialPageRoute(builder: (context) =>
+          TakePictureScreen(camera: firstCamera),),
     );
-
-    print('_pickPhoto');
-    print(result);
-
     setMealPhoto(result);
   }
 
@@ -135,7 +137,7 @@ class MealDetailsSaveForm extends StatelessWidget {
       child: Container(
         color: Theme.of(context).primaryColor,
         padding: EdgeInsets.all(5.0),
-        child: Text('SALVAR REFEIÇÃO FEITA'),
+        child: const Text('SALVAR REFEIÇÃO FEITA'),
       ),
       onPressed: _submitForm,
     );
@@ -143,7 +145,6 @@ class MealDetailsSaveForm extends StatelessWidget {
 
   void _submitForm() {
     if (!_formKey.currentState.validate()) {
-      print(_formData);
       return;
     }
 

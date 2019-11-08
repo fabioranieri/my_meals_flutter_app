@@ -24,6 +24,17 @@ class Meal {
   bool isDone;
   String photo;
 
+  Meal.fromJson(Map<String, dynamic> json) {
+    id = Uuid.v4();
+    name = json['name'];
+    time = json['time'];
+    description = json['description'];
+    recipeLink = json['recipeLink'];
+    type = json['type'];
+    isDone = json['isDone'];
+    photo = json['photo'] ?? '';
+  }
+
   decodePhoto () {
     Uint8List bytes = base64.decode(this.photo);
     return bytes = bytes.buffer.asUint8List(

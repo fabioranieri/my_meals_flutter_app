@@ -11,7 +11,7 @@ class TabBarDefault extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new DefaultTabController(
+    return  DefaultTabController(
       length: 2,
       child: Scaffold(
         appBar: AppBar(
@@ -31,7 +31,7 @@ class TabBarDefault extends StatelessWidget {
             tabs: myTabs,
           ),
         ),
-        body: new TabBarView(
+        body: TabBarView(
           children: [
             MealListScreen(),
             MyMealsScreen(),

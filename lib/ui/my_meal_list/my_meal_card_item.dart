@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
-import 'package:my_meals_flutter_app/ui/shared_widget/meal_photo.dart';
+import 'package:my_meals_flutter_app/ui/meal_details/meal_photo.dart';
 
 class MyMealCardItem extends StatelessWidget {
   MyMealCardItem(this.item, this.index);

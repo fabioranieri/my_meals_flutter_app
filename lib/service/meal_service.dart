@@ -18,18 +18,7 @@ class MealService {
 
   List<Meal> _convertToMealList(Map<String, dynamic> jsonResponse) {
     List<Meal> mealList = [];
-    jsonResponse.forEach((key, item) {
-      mealList.add(Meal(
-        id: Uuid.v4(),
-        name: item['name'],
-        time: item['time'],
-        description: item['description'],
-        recipeLink: item['recipeLink'],
-        type: item['type'],
-        isDone: item['isDone'],
-        photo: item['photo'] ?? '',
-      ));
-    });
+    jsonResponse.forEach((key, item) => mealList.add(Meal.fromJson(item)));
     return mealList;
   }
 }

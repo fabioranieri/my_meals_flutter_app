@@ -10,14 +10,14 @@ class MealPhoto extends StatelessWidget {
     if(item.photoIsEmpty()) {
       return AspectRatio(
         aspectRatio: 16.0 / 9.0,
-        child: Image.asset('assets/no-photo-available.png',
+        child: Image.asset('app_assets/no-photo-available.png',
           fit: BoxFit.cover,
         ),
       );
     } else {
       return AspectRatio(
         aspectRatio: 16.0 / 9.0,
-        child: Image.asset('assets/no-photo-available.png', fit: BoxFit.cover,),
+        child: Image.memory(item.decodePhoto(), fit: BoxFit.fitWidth),
       );
     }
   }

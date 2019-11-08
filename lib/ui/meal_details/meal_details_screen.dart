@@ -28,16 +28,10 @@ class _MealDetailsState extends State<MealDetailsScreen> {
   }
 
   void _setMealPhoto(String photo) {
-
-    print('_setMealPhoto');
-    print(_setMealPhoto);
-    print(photo);
-
     File imageFile = new File(photo);
     List<int> imageBytes = imageFile.readAsBytesSync();
     String base64Image = base64.encode(imageBytes);
     setState(() {_meal.photo = base64Image;});
-    print(_meal.photo);
   }
 
   void _addMeal(Meal meal) {
