@@ -1,16 +1,12 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
-import 'dart:async';
 
 class TakePictureScreen extends StatefulWidget {
+  const TakePictureScreen({Key key, this.camera}) : super(key: key);
   final CameraDescription camera;
-
-  const TakePictureScreen({
-    Key key,
-    @required this.camera,
-  }) : super(key: key);
 
   @override
   TakePictureScreenState createState() => TakePictureScreenState();
@@ -41,14 +37,14 @@ class TakePictureScreenState extends State<TakePictureScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Tirar photo')),
+      appBar: AppBar(title: const Text('Take a photo')),
       body: FutureBuilder<void>(
         future: _initializeControllerFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return CameraPreview(_controller);
           } else {
-            return Center(child: CircularProgressIndicator());
+            return Center(child: const CircularProgressIndicator());
           }
         },
       ),
@@ -57,16 +53,12 @@ class TakePictureScreenState extends State<TakePictureScreen> {
         onPressed: () async {
           try {
             await _initializeControllerFuture;
-
             final path = join(
               (await getTemporaryDirectory()).path,
               '${DateTime.now()}.png',
             );
-
             await _controller.takePicture(path);
-
             Navigator.pop(context, path.toString());
-
           } catch (e) {
             print(e);
             Navigator.pop(context, -1);

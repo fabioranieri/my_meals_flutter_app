@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
-import 'package:my_meals_flutter_app/screen/meal_details_screen/meal_details_screen.dart';
+import 'package:my_meals_flutter_app/ui/meal_details'
+    '/meal_details_screen.dart';
 
 class AddMealFabButton extends StatelessWidget {
 
-  AddMealFabButton();
+  const AddMealFabButton();
 
   @override
   Widget build(BuildContext context) {
@@ -12,17 +13,9 @@ class AddMealFabButton extends StatelessWidget {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => MealDetailsScreen(meal: Meal(
-              null,
-              null,
-              null,
-              null,
-              null,
-              null,
-              null,
-              null
-          )
-          )),
+          MaterialPageRoute(builder: (context) => MealDetailsScreen(
+              meal: Meal())
+          ),
         );
       },
       child: Icon(Icons.add),

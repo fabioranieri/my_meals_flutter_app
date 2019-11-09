@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:my_meals_flutter_app/screen/meal_screen/meal_screen.dart';
-import 'package:my_meals_flutter_app/screen/my_meal_screen/my_meals_screen.dart';
+import 'package:my_meals_flutter_app/ui/meal_list/meal_list_screen.dart';
+import 'package:my_meals_flutter_app/ui/my_meal_list/my_meals_screen.dart';
 
 class TabBarDefault extends StatelessWidget {
 
   final List<Tab> myTabs = <Tab>[
-    Tab(text: 'Dieta', icon: new Icon(Icons.restaurant)),
-    Tab(text: 'Refeições Feitas', icon: new Icon(Icons.fastfood)),
+    Tab(text: 'Dieta', icon: Icon(Icons.restaurant)),
+    Tab(text: 'Refeições Feitas', icon: Icon(Icons.fastfood)),
   ];
 
   @override
   Widget build(BuildContext context) {
-
-    return new DefaultTabController(
+    return  DefaultTabController(
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('My Meals App'),
+          title: const Text('My Meals App'),
           automaticallyImplyLeading: false,
           elevation: 0.1,
           backgroundColor: Theme.of(context).backgroundColor,
@@ -24,7 +23,7 @@ class TabBarDefault extends StatelessWidget {
             IconButton(
               icon: Icon(Icons.notifications),
               onPressed: () {
-                print("Side menu clicked");
+                print('Side menu clicked');
               },
             )
           ],
@@ -32,9 +31,9 @@ class TabBarDefault extends StatelessWidget {
             tabs: myTabs,
           ),
         ),
-        body: new TabBarView(
-          children: [
-            MealScreen(),
+        body: TabBarView(
+          children: const [
+            MealListScreen(),
             MyMealsScreen(),
           ],
         ),

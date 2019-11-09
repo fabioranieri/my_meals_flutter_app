@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:my_meals_flutter_app/model/meal.dart';
 
 class MealPhoto extends StatelessWidget {
-  final Meal item;
-
   const MealPhoto(this.item);
+  final Meal item;
 
   @override
   Widget build(BuildContext context) {
