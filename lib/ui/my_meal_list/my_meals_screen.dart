@@ -20,11 +20,6 @@ class _MyMealsScreenState extends State<MyMealsScreen> {
   List<Meal> items;
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final _myMealList = Provider.of<MyMealList>(context);
     return Scaffold(
