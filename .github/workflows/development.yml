@@ -1,5 +1,12 @@
-on: push
-name: Test, Build and Release apk
+name: Development - Build, Analyze and Test
+on:
+  push:
+refs/heads:
+  - develop
+  - 'feature/**'
+branches-ignore:
+  - master
+  - 'release/**'
 jobs:
   build:
     name: Build APK
@@ -13,11 +20,6 @@ jobs:
         with:
           flutter-version: '1.7.8+hotfix.4'
       - run: flutter pub get
-      - run: flutter test
       # - run: flutter analyze
+      - run: flutter test
       - run: flutter build apk --debug --split-per-abi
-      - name: Create a Release APK
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: "build/app/outputs/apk/debug/*.apk"
-          token: ${{ secrets.github_access_token }}
