@@ -2,11 +2,11 @@ name: Build, Analyze, Test and Deploy
 on:
   push:
     branches:
-    - 'master'
-    - 'release/**'
-    - 'hotfix/**'
-    - '!dev'
-    - '!feature/**'
+      - 'master'
+      - 'release/**'
+      - 'hotfix/**'
+      - '!dev'
+      - '!feature/**'
 jobs:
   build:
     name: Build APK
@@ -24,7 +24,7 @@ jobs:
       - run: flutter test
       - run: flutter build apk --debug --split-per-abi
       - name: Create a Release APK base a tag created manualy
-          uses: ncipollo/release-action@v1
-          with:
-            artifacts: "build/app/outputs/apk/debug/*.apk"
-            token: ${{ secrets.github_access_token }}
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/app/outputs/apk/debug/*.apk"
+          token: ${{ secrets.github_access_token }}
