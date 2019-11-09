@@ -81,16 +81,16 @@ class MealDetailsSaveForm extends StatelessWidget {
   Widget _buildPhotoLabel(BuildContext context) {
     return Container(
       height: 70.0,
-      padding: EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(10.0),
       child: Column(children: [
-        SizedBox(
+        const SizedBox(
           height: 20.0,
         ),
         Text(
           'Photo da refeição',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10.0,
         ),
       ]),
@@ -100,9 +100,9 @@ class MealDetailsSaveForm extends StatelessWidget {
   Widget _buildPhotoButtom(BuildContext context) {
     return Container(
       height: 80.0,
-      padding: EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(10.0),
       child: Column(children: [
-        SizedBox(
+        const SizedBox(
           height: 10.0,
         ),
         OutlineButton(
@@ -111,7 +111,7 @@ class MealDetailsSaveForm extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Icon(Icons.photo_camera, color: Theme.of(context).primaryColor,),
-              Text(' TIRAR PHOTO'),
+              const Text(' TIRAR PHOTO'),
             ],
           ),
           onPressed: () {
@@ -136,7 +136,7 @@ class MealDetailsSaveForm extends StatelessWidget {
     return CustomButton(
       child: Container(
         color: Theme.of(context).primaryColor,
-        padding: EdgeInsets.all(5.0),
+        padding: const EdgeInsets.all(5.0),
         child: const Text('SALVAR REFEIÇÃO FEITA'),
       ),
       onPressed: _submitForm,
@@ -161,7 +161,7 @@ class MealDetailsSaveForm extends StatelessWidget {
     final double targetPadding = deviceWidth - targetWidth;
     return Container (
       child: Container(
-        margin: EdgeInsets.all(10.0),
+        margin: const EdgeInsets.all(10.0),
         child: Form(
           key: _formKey,
           child: ListView(
@@ -173,7 +173,7 @@ class MealDetailsSaveForm extends StatelessWidget {
               MealPhoto(meal),
               _buildPhotoButtom(context),
               _buildDescriptionTextField(),
-              SizedBox(
+              const SizedBox(
                 height: 10.0,
               ),
               _saveButton(context),

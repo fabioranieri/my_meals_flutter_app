@@ -7,16 +7,17 @@ class MyMealList extends ChangeNotifier {
 
   final List<Meal> _mymeallist = [
     Meal(id: Uuid.v4(),
-        name: "Café da manhã" ,
-        time: "08:00",
-        description: "Torrada integral, ovo e leite de soja.",
-        recipeLink: "-",
-        type: "Café da manhã",
+        name: 'Café da manhã',
+        time: '08:00',
+        description: 'Torrada integral, ovo e leite de soja.',
+        recipeLink: '-',
+        type: 'Café da manhã',
         isDone: false,
     ),
   ];
 
-  UnmodifiableListView<Meal> get mymeallist => UnmodifiableListView(_mymeallist);
+  UnmodifiableListView<Meal> get mymeallist =>
+      UnmodifiableListView(_mymeallist);
 
   int get itemsQtd => _mymeallist.length;
 

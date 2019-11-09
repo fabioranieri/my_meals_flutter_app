@@ -23,9 +23,9 @@ class CustomApp extends StatelessWidget {
         initialRoute: '/tabbar-default',
         routes: {
           '/tabbar-default': (context) => TabBarDefault(),
-          '/home': (context) => MealListScreen(),
-          '/my-meal': (context) =>  MyMealsScreen(),
-          '/take-picture': (context) =>  TakePictureScreen()
+          '/home': (context) => const MealListScreen(),
+          '/my-meal': (context) =>  const MyMealsScreen(),
+          '/take-picture': (context) =>  const TakePictureScreen()
         },
       );
     } else {
@@ -44,9 +44,9 @@ class CustomApp extends StatelessWidget {
         initialRoute: '/tabbar-default',
         routes: {
           '/tabbar-default': (context) => TabBarDefault(),
-          '/home': (context) => MealListScreen(),
-          '/my-meal': (context) =>  MyMealsScreen(),
-          '/take-picture': (context) =>  TakePictureScreen()
+          '/home': (context) => const MealListScreen(),
+          '/my-meal': (context) =>  const MyMealsScreen(),
+          '/take-picture': (context) =>  const TakePictureScreen()
         },
       );
     }

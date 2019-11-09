@@ -4,7 +4,7 @@ import 'package:my_meals_flutter_app/model/meal.dart';
 import 'my_meal_card_item.dart';
 
 class MyMealCardListItem extends StatelessWidget {
-  MyMealCardListItem(this.items);
+  const MyMealCardListItem(this.items);
   final List<Meal> items;
 
   @override
@@ -18,7 +18,9 @@ class MyMealCardListItem extends StatelessWidget {
             itemBuilder: (context, index) {
               return Card(
                 elevation: 3.0,
-                margin: EdgeInsets.symmetric(horizontal: 7.0, vertical: 4.0),
+                margin: const EdgeInsets.symmetric(
+                    horizontal: 7.0, vertical: 4.0,
+                ),
                 child: Container(
                   decoration: BoxDecoration(
                       color: Colors.lightBlueAccent[300]
@@ -30,6 +32,6 @@ class MyMealCardListItem extends StatelessWidget {
         ),
       );
     }
-    return Center(child: Text('No items found, please add some.'));
+    return Center(child: const Text('No items found, please add some.'));
   }
 }

@@ -31,6 +31,6 @@ class MealCardListItem extends StatelessWidget {
           );
         },
       ),
-    ) : Center(child: Text('No items found, please add some.'));
+    ) : Center(child: const Text('No items found, please add some.'));
   }
 }

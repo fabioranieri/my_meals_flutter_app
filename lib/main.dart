@@ -28,8 +28,8 @@ void main() {
             initialRoute: '/tabbar-default',
             routes: {
               '/tabbar-default': (context) => TabBarDefault(),
-              '/home': (context) => MealListScreen(),
-              '/my-meal': (context) =>  MyMealsScreen(),
+              '/home': (context) => const MealListScreen(),
+              '/my-meal': (context) =>  const MyMealsScreen(),
             },
           )
       )
