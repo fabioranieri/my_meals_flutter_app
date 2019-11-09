@@ -6,30 +6,25 @@ import 'package:my_meals_flutter_app/shared_state/my_meal_list.dart';
 import 'package:provider/provider.dart';
 
 class MyMealsScreen extends StatefulWidget {
-  MyMealsScreen({Key key, this.items}) : super(key: key);
+  const MyMealsScreen({Key key, this.items}) : super(key: key);
   final List<Meal> items;
 
   @override
   State<StatefulWidget> createState() {
-    return _MyMealsScreenState(items: this.items);
+    return _MyMealsScreenState(items: items);
   }
 }
 
 class _MyMealsScreenState extends State<MyMealsScreen> {
-  List<Meal> items;
   _MyMealsScreenState({Key key, @required this.items});
-
-  @override
-  void initState() {
-    super.initState();
-  }
+  List<Meal> items;
 
   @override
   Widget build(BuildContext context) {
     final _myMealList = Provider.of<MyMealList>(context);
     return Scaffold(
       body: MyMealCardListItem(_myMealList.mymeallist),
-      floatingActionButton: AddMealFabButton(),
+      floatingActionButton: const AddMealFabButton(),
     );
   }
 }

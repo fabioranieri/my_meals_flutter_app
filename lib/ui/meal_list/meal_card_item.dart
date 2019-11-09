@@ -10,7 +10,9 @@ class ListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-        contentPadding: EdgeInsets.symmetric(horizontal: 7.0, vertical: 3.0),
+        contentPadding: const EdgeInsets.symmetric(
+            horizontal: 7.0, vertical: 3.0,
+        ),
         leading: Container(
           padding: const EdgeInsets.only(right: 1.0),
           decoration: BoxDecoration(

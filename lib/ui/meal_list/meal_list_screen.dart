@@ -33,7 +33,7 @@ class _MealScreenState extends State<MealListScreen> {
         _items = onValue;
       });
     }).catchError((onError) {
-      print("catchError: $onError");
+      print('catchError: $onError');
     });
   }
 

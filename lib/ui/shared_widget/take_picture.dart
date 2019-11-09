@@ -1,11 +1,11 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
-import 'dart:async';
 
 class TakePictureScreen extends StatefulWidget {
-  const TakePictureScreen({Key key, @required this.camera,}) : super(key: key);
+  const TakePictureScreen({Key key, this.camera}) : super(key: key);
   final CameraDescription camera;
 
   @override
@@ -44,7 +44,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
           if (snapshot.connectionState == ConnectionState.done) {
             return CameraPreview(_controller);
           } else {
-            return Center(child: CircularProgressIndicator());
+            return Center(child: const CircularProgressIndicator());
           }
         },
       ),

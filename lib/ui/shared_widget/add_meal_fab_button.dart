@@ -5,7 +5,7 @@ import 'package:my_meals_flutter_app/ui/meal_details'
 
 class AddMealFabButton extends StatelessWidget {
 
-  AddMealFabButton();
+  const AddMealFabButton();
 
   @override
   Widget build(BuildContext context) {
