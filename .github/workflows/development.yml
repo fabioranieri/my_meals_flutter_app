@@ -1,12 +1,11 @@
 name: Development - Build, Analyze and Test
 on:
   push:
-refs/heads:
-  - develop
-  - 'feature/**'
-branches-ignore:
-  - master
-  - 'release/**'
+    branches:
+    - 'dev'
+    - 'feature/**'
+    - '!master'
+    - '!release/**'
 jobs:
   build:
     name: Build APK
