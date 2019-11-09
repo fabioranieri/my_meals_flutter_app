@@ -21,6 +21,3 @@ jobs:
         with:
           artifacts: "build/app/outputs/apk/debug/*.apk"
           token: ${{ secrets.github_access_token }}
-          commit: ${{ git rev-parse HEAD }}
-          name: ${{ git rev-parse HEAD }}
-          tag: ${{ git rev-parse HEAD }}
