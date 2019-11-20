@@ -23,7 +23,7 @@ class _MyMealsScreenState extends State<MyMealsScreen> {
   Widget build(BuildContext context) {
     final _myMealList = Provider.of<MyMealList>(context);
     return Scaffold(
-      body: MyMealCardListItem(_myMealList.mymeallist),
+      body: MyMealCardListItem(_myMealList.myMeallist),
       floatingActionButton: const AddMealFabButton(),
     );
   }

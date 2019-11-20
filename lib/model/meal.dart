@@ -45,4 +45,10 @@ class Meal {
   bool photoIsEmpty () {
     return photo == null;
   }
+
+  List<Meal> mealListFromJson(Map<String, dynamic> jsonResponse) {
+    List<Meal> mealList = [];
+    jsonResponse.forEach((key, item) => mealList.add(Meal.fromJson(item)));
+    return mealList;
+  }
 }
